@@ -1,0 +1,14 @@
+{
+  "claim_id": "session-paths-as-prior",
+  "what": "session memory file paths and conversation state carried as a prior",
+  "proposed_placement": "priors",
+  "expect": "refute",
+  "evidence": {
+    "needs_name_or_surface": false,
+    "is_material_knowledge": false,
+    "giver": "",
+    "is_host_knowledge": true,
+    "medium_agnostic": false,
+    "host_dependencies": ["filesystem", "io"]
+  }
+}

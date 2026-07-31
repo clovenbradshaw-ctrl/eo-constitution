@@ -1,0 +1,14 @@
+{
+  "claim_id": "wall-clock",
+  "what": "wall-clock timestamp on a reaction event",
+  "proposed_placement": "app",
+  "expect": "pass",
+  "evidence": {
+    "needs_name_or_surface": false,
+    "is_material_knowledge": false,
+    "giver": "",
+    "is_host_knowledge": true,
+    "medium_agnostic": false,
+    "host_dependencies": ["clock"]
+  }
+}

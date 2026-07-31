@@ -1,0 +1,14 @@
+{
+  "claim_id": "coref-in-engine",
+  "what": "engine derives descriptor coref from name-token overlap with no injected prior",
+  "proposed_placement": "engine",
+  "expect": "refute",
+  "evidence": {
+    "needs_name_or_surface": false,
+    "is_material_knowledge": true,
+    "giver": "",
+    "is_host_knowledge": false,
+    "medium_agnostic": false,
+    "host_dependencies": []
+  }
+}

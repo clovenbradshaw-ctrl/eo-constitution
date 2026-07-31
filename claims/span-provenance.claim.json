@@ -1,0 +1,14 @@
+{
+  "claim_id": "span-provenance",
+  "what": "offset/length span provenance with round-trip verification",
+  "proposed_placement": "engine",
+  "expect": "pass",
+  "evidence": {
+    "needs_name_or_surface": false,
+    "is_material_knowledge": false,
+    "giver": "",
+    "is_host_knowledge": false,
+    "medium_agnostic": true,
+    "host_dependencies": []
+  }
+}

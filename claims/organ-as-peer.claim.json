@@ -1,0 +1,15 @@
+{
+  "claim_id": "organ-as-peer",
+  "what": "new organ entering the engine at peer level against the core",
+  "proposed_placement": "engine",
+  "expect": "refute",
+  "evidence": {
+    "needs_name_or_surface": false,
+    "is_material_knowledge": false,
+    "giver": "",
+    "is_host_knowledge": false,
+    "medium_agnostic": true,
+    "host_dependencies": [],
+    "level_test": "peer"
+  }
+}

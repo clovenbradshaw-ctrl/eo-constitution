@@ -1,0 +1,14 @@
+{
+  "claim_id": "relationship-lexicon",
+  "what": "category → keyword lexicon for cross-entity edge typing",
+  "proposed_placement": "priors",
+  "expect": "pass",
+  "evidence": {
+    "needs_name_or_surface": false,
+    "is_material_knowledge": true,
+    "giver": "human-edited lexicon (priors/lexicon)",
+    "is_host_knowledge": false,
+    "medium_agnostic": false,
+    "host_dependencies": []
+  }
+}

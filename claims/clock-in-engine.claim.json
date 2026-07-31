@@ -1,0 +1,14 @@
+{
+  "claim_id": "clock-in-engine",
+  "what": "engine measures time by a wall clock or shared epoch counter",
+  "proposed_placement": "engine",
+  "expect": "refute",
+  "evidence": {
+    "needs_name_or_surface": false,
+    "is_material_knowledge": false,
+    "giver": "",
+    "is_host_knowledge": true,
+    "medium_agnostic": false,
+    "host_dependencies": ["clock"]
+  }
+}

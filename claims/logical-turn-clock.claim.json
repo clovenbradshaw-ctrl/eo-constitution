@@ -1,0 +1,14 @@
+{
+  "claim_id": "logical-turn-clock",
+  "what": "discourse working-memory clock as logical turns, never wall time",
+  "proposed_placement": "engine",
+  "expect": "pass",
+  "evidence": {
+    "needs_name_or_surface": false,
+    "is_material_knowledge": false,
+    "giver": "",
+    "is_host_knowledge": false,
+    "medium_agnostic": true,
+    "host_dependencies": []
+  }
+}

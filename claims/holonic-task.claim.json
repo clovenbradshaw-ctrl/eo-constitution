@@ -1,0 +1,14 @@
+{
+  "claim_id": "holonic-task",
+  "what": "holonic task decomposition tool (PLAN/RESEARCH/EXECUTE/ASSEMBLE with mechanical citations)",
+  "proposed_placement": "app",
+  "expect": "pass",
+  "evidence": {
+    "needs_name_or_surface": false,
+    "is_material_knowledge": false,
+    "giver": "",
+    "is_host_knowledge": true,
+    "medium_agnostic": false,
+    "host_dependencies": ["io", "network"]
+  }
+}

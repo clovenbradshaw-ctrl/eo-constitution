@@ -1,0 +1,14 @@
+{
+  "claim_id": "coref-descriptor",
+  "what": "descriptor coref injection (monster ≈ creature) as a per-text prior",
+  "proposed_placement": "priors",
+  "expect": "pass",
+  "evidence": {
+    "needs_name_or_surface": false,
+    "is_material_knowledge": true,
+    "giver": "human reader (per-text coref prior)",
+    "is_host_knowledge": false,
+    "medium_agnostic": true,
+    "host_dependencies": []
+  }
+}

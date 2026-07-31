@@ -1,0 +1,14 @@
+{
+  "claim_id": "prince-vocative",
+  "what": "\"Prince\" vocative name matching as presence detection",
+  "proposed_placement": "engine",
+  "expect": "refute",
+  "evidence": {
+    "needs_name_or_surface": true,
+    "is_material_knowledge": false,
+    "giver": "",
+    "is_host_knowledge": false,
+    "medium_agnostic": false,
+    "host_dependencies": []
+  }
+}
