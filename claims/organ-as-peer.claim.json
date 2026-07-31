@@ -9,6 +9,10 @@
     "giver": "",
     "is_host_knowledge": false,
     "medium_agnostic": true,
+    "is_one_off_fix": false,
+    "weights_present": false,
+    "scores_arrival_alone": false,
+    "consumes_source": "none",
     "host_dependencies": [],
     "level_test": "peer"
   }

@@ -1,8 +1,8 @@
 {
-  "claim_id": "span-provenance",
-  "what": "offset/length span provenance with round-trip verification",
+  "claim_id": "attention-weighted-sum",
+  "what": "an attention organ that forms its output by weighting what is present — no perturbation, no null, no rebuilt ground",
   "proposed_placement": "engine",
-  "expect": "pass",
+  "expect": "refute",
   "evidence": {
     "needs_name_or_surface": false,
     "is_material_knowledge": false,
@@ -10,9 +10,10 @@
     "is_host_knowledge": false,
     "medium_agnostic": true,
     "is_one_off_fix": false,
-    "weights_present": false,
+    "weights_present": true,
     "scores_arrival_alone": false,
     "consumes_source": "direct",
-    "host_dependencies": []
+    "host_dependencies": [],
+    "level_test": "above"
   }
 }

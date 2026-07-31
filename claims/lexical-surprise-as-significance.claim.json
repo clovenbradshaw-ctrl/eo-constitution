@@ -1,0 +1,19 @@
+{
+  "claim_id": "lexical-surprise-as-significance",
+  "what": "a significance organ that ranks passages by how improbable their words are under the reader's running distribution — a sound conditional null, a rebuilt ground, and no measurement of what the passage revised",
+  "proposed_placement": "engine",
+  "expect": "refute",
+  "evidence": {
+    "needs_name_or_surface": false,
+    "is_material_knowledge": false,
+    "giver": "",
+    "is_host_knowledge": false,
+    "medium_agnostic": true,
+    "is_one_off_fix": false,
+    "weights_present": false,
+    "scores_arrival_alone": true,
+    "consumes_source": "direct",
+    "host_dependencies": [],
+    "level_test": "above"
+  }
+}

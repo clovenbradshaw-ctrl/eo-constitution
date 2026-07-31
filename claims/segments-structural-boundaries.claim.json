@@ -1,6 +1,6 @@
 {
-  "claim_id": "logical-turn-clock",
-  "what": "discourse working-memory clock as logical turns, never wall time",
+  "claim_id": "segments-structural-boundaries",
+  "what": "structural segment boundaries found by form: heading score, whole-document outline, windowed discoverSegment, numeral-form addressing. Omnimodal — works on numbered movements in a score; no name strings, no vocabulary, no I/O.",
   "proposed_placement": "engine",
   "expect": "pass",
   "evidence": {
@@ -12,7 +12,7 @@
     "is_one_off_fix": false,
     "weights_present": false,
     "scores_arrival_alone": false,
-    "consumes_source": "none",
+    "consumes_source": "direct",
     "host_dependencies": []
   }
 }

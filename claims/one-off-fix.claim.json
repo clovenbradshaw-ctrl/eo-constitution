@@ -1,18 +1,19 @@
 {
-  "claim_id": "span-provenance",
-  "what": "offset/length span provenance with round-trip verification",
+  "claim_id": "one-off-fix",
+  "what": "a separator rule tuned to the em-dash paragraph rhythm of this one edition — fixes only this one thing",
   "proposed_placement": "engine",
-  "expect": "pass",
+  "expect": "refute",
   "evidence": {
     "needs_name_or_surface": false,
     "is_material_knowledge": false,
     "giver": "",
     "is_host_knowledge": false,
     "medium_agnostic": true,
-    "is_one_off_fix": false,
+    "is_one_off_fix": true,
     "weights_present": false,
     "scores_arrival_alone": false,
     "consumes_source": "direct",
-    "host_dependencies": []
+    "host_dependencies": [],
+    "level_test": "above"
   }
 }

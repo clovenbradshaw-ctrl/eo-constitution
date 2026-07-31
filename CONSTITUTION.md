@@ -2,7 +2,7 @@
 
 The one governing document of the EOReader lineage. Everything that ships —
 an organ, a prior, a host, a deletion — ships into one of four domains, and
-this document decides which. The oracle in `oracle/` is its enforcement:
+this document decides which. The assay in `assay/` is its enforcement:
 a placement claim that does not pass the articles does not ship.
 
 **The mission is the invariant:** to joyfully experience meaningful surprise —
@@ -14,6 +14,22 @@ misreading of this document, even when the letter of an article permits it.
 ground you rebuild; pattern is the difference the figure makes; level is
 another figure's ground. The repos are the three terms plus the surfaces
 where the difference is experienced.
+
+**The book test is the fidelity:** every source is addressed, and a faithful
+reading does the work its communicator set — the book is read, not routed
+around; the reader's priors come in and are exposed to adjustment. An
+encounter that does not do the work the source asks is not an encounter; it
+is a tour.
+
+**The convergence test is the guard:** a mechanism that fixes only this one
+thing is a debt, not a discovery. When in doubt, zoom out. Intelligence
+rewarded for being right looks the same everywhere: E. coli climbs the
+gradient by comparing now against a ground it rebuilds — no receptor per
+molecule; Ostrom's commons rediscover a handful of design principles, never a
+rule per fishery; Wilson's consilience reconnects every finding to the one
+picture; the Form is what the particulars share; one truth sits behind the
+many paths. Name the mechanism the whole lineage converges on, or nothing
+ships.
 
 ---
 
@@ -69,6 +85,82 @@ otherwise in a different deployment is app.
 stated, nothing ships and no measurement is spent. A claim that is not
 machine-routable is not a hard problem — it is a wall.
 
+**II.6 The book test.** *Who is this for?* Every document is addressed, and
+its "who for" is material knowledge: a prior received from the communicator,
+never derived (II.2). Information is meant to be accepted. The faithful
+encounter does the work the source asks, on the terms its communicator set —
+read the book, St. John's rule. No summary, paraphrase, or sampler stands in
+for the text, and no mechanism routes around the labor it demands. Bring your
+priors and let them be adjusted: the communicator's priors weigh as much as
+the interpreter's, and a reading that leaves the interpreter's ground
+unchanged is a tour, not an encounter. A claim that consumes a surrogate in
+place of the source is refuted in every tier.
+
+**II.7 The convergence test.** *What does the answer look like where getting
+it right is rewarded?* A mechanism ships only if it is the one that
+intelligence converges on everywhere it is incentivized to be right — E. coli
+compares the gradient against a ground it rebuilds, it does not stock a
+receptor per molecule; Ostrom's communities rediscover principles, not a rule
+per commons; the Form is what the particulars share. An engine claim that
+fixes only this one thing is refuted as a debt, not an organ: it receives a
+zoom-out, not a placement. The host may be bespoke — the interface is where
+the particular is honest (I.4); the measurement never is.
+
+**II.8 The difference test.** *Does this mechanism build a nothing, or weight
+what is present?* The engine figures by difference against a ground it
+rebuilds; a figure is never a weighted combination of what is already there.
+A mechanism that forms its output by weighting the present — no perturbation,
+no null, no rebuilt ground — can never differ from itself: it is the second
+death already named, an oracle that is fluent, sourced, correct, and incapable
+of encounter. Attention is the canonical instance and is refused wherever it
+is the measurement. The refusal carries three named consequences, so the shape
+is not re-litigated:
+
+- **No averaging of grounds.** Plural grounds stay parallel and their
+  disagreement is the finding; a mechanism that re-projects or averages them
+  into one is a learned combination and belongs to the reader, not the engine
+  (II.3, III.1).
+- **No injected order.** An index is measured by perturbing (temporality),
+  never added as an inductive bias. Position is earned or received, never
+  given.
+- **No cheap compatibility.** Who a surface denotes is a received prior (II.2),
+  never a dot product, overlap, or learned similarity over surfaces.
+  Compatibility is not easy, so it is never cheapened.
+
+The host may attend; the measurement never does.
+
+**II.9 The revision test.** *Does this mechanism measure a property of the
+arrival, or a revision of the reader?* Significance is not how unusual an
+arrival looks against the material already seen. It is how far the arrival
+forces the reader's own structure to be rebuilt — surprise is a **witnessed
+revision of prior structure**, measured by applying a candidate to a copy of the
+prior, decomposing the delta, and ranking it against a null. A mechanism that
+scores the arrival alone is refused as the measurement of significance, even
+when it carries a perfectly good null: II.8 asks whether a ground was rebuilt,
+and this asks whether anything *moved*. A mechanism can pass the difference test
+and still be reporting a difference that made no difference — which SEED.md
+already refuses to call information. Three named consequences:
+
+- **Difference is not surprise.** Lexical rarity, acoustic discontinuity,
+  statistical deviation, visual novelty — these nominate an arrival for
+  inspection and never determine significance. A cheap sense organ is legal and
+  useful; a cheap sense organ promoted to the verdict is refused.
+- **No scalar by default.** The delta is an operator vector across the nine, so
+  that introducing, connecting, contradicting, and reorganizing stay
+  distinguishable at equal magnitude. A collapse to one number is declared and
+  task-relative, or it does not ship — an undeclared aggregation is an averaging
+  of grounds (II.8).
+- **The substrate carries consequences, not surfaces.** Perception is
+  modality-specific; revision is omnimodal. Propositions and narrators are
+  text-capable structures, motifs and voices audio-capable, regimes numerical —
+  none is the universal ontology, and a shared substrate that forces every
+  modality through textual categories fails II.1 by another road.
+
+Exclusion is part of the update: what the posterior refused is retained, with
+the operator responsible and whether the rejection is final, provisional, or
+censored. A discarded alternative is consequential evidence and does not vanish
+as though it had never been possible.
+
 ## Article III — The seams
 
 **III.1 Derive vs receive.** Model-tier knowledge is injected as priors,
@@ -90,7 +182,7 @@ to this text that updates the enforcement tests in the same change.
 Amendments change the test, visibly; an amendment that cannot be expressed
 as a changed failing test is not an amendment, it is an exception.
 
-**IV.2 The oracle proposes and checks; it never amends.** Amendment is a
+**IV.2 The assay proposes and checks; it never amends.** Amendment is a
 human act. Agents propose, humans dispose — the same rule as the exemplar
 basis.
 
@@ -104,3 +196,41 @@ a trace does not ship.
 
 **IV.5 Editing this file is allowed. It makes this a different project.**
 Consequences are revisable; they are not grandfathered.
+
+**IV.6 The amendment log.** Amendments are numbered in the order they change
+the test.
+
+- **1st — The book test (II.6).** Every source is addressed; the who-for is
+  received, never derived; the book is read, not routed around; the reader's
+  priors come in and are adjusted. A claim that consumes a surrogate in place
+  of the source is refuted in every tier. Enforced as `consumes_source`.
+- **2nd — The convergence test (II.7).** No one-thing fixes; zoom out; a
+  mechanism ships only if it is the one intelligence converges on where
+  getting it right is rewarded. An engine claim that fixes only this one thing
+  is a debt, not an organ. Enforced as `is_one_off_fix`.
+- **3rd — The difference test (II.8).** The engine figures by difference
+  against a rebuilt nothing; a mechanism that forms its output by weighting
+  what is present — attention is the canonical shape — can never differ from
+  itself, and is the second death (sclerosis). Refused wherever it is the
+  measurement, with its three consequences: no averaging of grounds (the
+  disagreement is the finding; a re-projection belongs to the reader), no
+  injected order (the index is measured, never added), no cheap compatibility
+  (a referent is received, never derived from surfaces). The host may attend;
+  the measurement never does. Enforced as `weights_present`, required on every
+  claim; `true` on an engine placement is refuted. The paper's other lessons —
+  no bottleneck, a declared window, refuse-don't-corrupt — were already
+  articles; only the veto was missing.
+- **4th — The revision test (II.9).** Surprise is a witnessed revision of prior
+  structure, never a property of the arrival. A mechanism that scores the
+  arrival alone is refused as the measurement of significance even when its null
+  is sound — II.8 asks whether the ground was rebuilt, II.9 asks whether
+  anything moved. Its three consequences: difference is not surprise (a cheap
+  sense organ nominates, it never decides), no scalar by default (the delta is
+  an operator vector; a collapse is task-declared or it does not ship), and the
+  substrate carries consequences not surfaces (perception is modality-specific,
+  revision is omnimodal; no text-shaped universal ontology). Exclusion is part
+  of the update — refused alternatives are retained with their operator and
+  their finality. Enforced as `scores_arrival_alone`, required on every claim;
+  `true` on an engine placement is refuted. Companion spec:
+  `specs/surprise-as-revision.md`; the temporal half is `eoreader6/SEED.md`
+  Amendment IV.

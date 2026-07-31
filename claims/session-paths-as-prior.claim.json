@@ -9,6 +9,13 @@
     "giver": "",
     "is_host_knowledge": true,
     "medium_agnostic": false,
-    "host_dependencies": ["filesystem", "io"]
+    "is_one_off_fix": false,
+    "weights_present": false,
+    "scores_arrival_alone": false,
+    "consumes_source": "none",
+    "host_dependencies": [
+      "filesystem",
+      "io"
+    ]
   }
 }

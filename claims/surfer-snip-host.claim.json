@@ -1,6 +1,6 @@
 {
-  "claim_id": "holonic-task",
-  "what": "holonic task decomposition tool (PLAN/RESEARCH/EXECUTE/ASSEMBLE with mechanical citations)",
+  "claim_id": "surfer-snip-host",
+  "what": "no-model NL-prompt surfer: addresses a reader's prompt to a structural segment and snips byte-accurate text out of the session corpus, registering the snip in provenance. Owns the session, the prompt-as-interface, and file I/O; it measures nothing about the material itself.",
   "proposed_placement": "app",
   "expect": "pass",
   "evidence": {
@@ -15,7 +15,7 @@
     "consumes_source": "direct",
     "host_dependencies": [
       "io",
-      "network"
+      "filesystem"
     ]
   }
 }

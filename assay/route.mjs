@@ -2,12 +2,12 @@
 import { readFileSync } from "node:fs";
 import { classify, check, VERDICTS } from "./classify.js";
 
-const usage = `eo-constitution routing oracle
+const usage = `eo-constitution routing assay
 
 usage:
-  node oracle/route.mjs check <claim.json>   verify a placement claim against the constitution
-  node oracle/route.mjs ask <evidence.json>  classify evidence and return the routed placement
-  node oracle/route.mjs help
+  node assay/route.mjs check <claim.json>   verify a placement claim against the constitution
+  node assay/route.mjs ask <evidence.json>  classify evidence and return the routed placement
+  node assay/route.mjs help
 
 exit codes:
   0  placement sustained (or classification resolved)
@@ -24,6 +24,9 @@ claim schema (check):
       "giver": "who gives it | ''",     // II.2 must name its giver
       "is_host_knowledge": bool,        // II.3 reader/host/moment/interface
       "medium_agnostic": bool,          // II.4 invariance
+      "is_one_off_fix": bool,           // II.7 convergence veto (engine claims)
+      "weights_present": bool,          // II.8 difference veto: weights what is present (engine claims)
+      "consumes_source": "direct|surrogate|none", // II.6 book test (surrogate refuted everywhere)
       "host_dependencies": [...],       // III.2 engine owns none
       "level_test": "above|peer|unstable" // IV.3 growth rule (engine organs)
     }

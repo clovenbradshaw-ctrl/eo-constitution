@@ -1,14 +1,14 @@
 {
-  "claim_id": "embedding-bridge",
-  "what": "embedding bridge for monster ≈ creature, injected to rerank engine output",
+  "claim_id": "document-who-for",
+  "what": "the intended addressee of a document (its 'who for') carried as a received prior that names the communicator as its giver",
   "proposed_placement": "priors",
   "expect": "pass",
   "evidence": {
     "needs_name_or_surface": false,
     "is_material_knowledge": true,
-    "giver": "injected model-tier witness",
+    "giver": "the communicator",
     "is_host_knowledge": false,
-    "medium_agnostic": true,
+    "medium_agnostic": false,
     "is_one_off_fix": false,
     "weights_present": false,
     "scores_arrival_alone": false,

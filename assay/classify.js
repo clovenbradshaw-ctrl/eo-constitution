@@ -13,11 +13,16 @@ export const FORBIDDEN_HOST_DEPENDENCIES = Object.freeze([
   "filesystem",
 ]);
 
+export const CONSUMPTION_MODES = Object.freeze(["direct", "surrogate", "none"]);
+
 const EVIDENCE_BOOLEANS = Object.freeze([
   "needs_name_or_surface",
   "is_material_knowledge",
   "is_host_knowledge",
   "medium_agnostic",
+  "is_one_off_fix",
+  "weights_present",
+  "scores_arrival_alone",
 ]);
 
 export function classify(evidence) {
@@ -49,6 +54,14 @@ export function classify(evidence) {
     };
   }
 
+  if (!CONSUMPTION_MODES.includes(evidence.consumes_source)) {
+    return {
+      verdict: VERDICTS.GAP,
+      placement: null,
+      reasons: ["II.5 — evidence.consumes_source must be one of direct|surrogate|none; type error before null"],
+    };
+  }
+
   let placement;
 
   if (evidence.is_host_knowledge) {
@@ -76,7 +89,44 @@ export function classify(evidence) {
     reasons.push("II.4 — invariant across every text and every host; the measurement itself");
   }
 
+  if (evidence.consumes_source === "surrogate") {
+    return {
+      verdict: VERDICTS.REFUTE,
+      placement,
+      reasons: [
+        "II.6 — the book test: this mechanism consumes a stand-in for the source. Read the book, St. John's rule — no summary, paraphrase, or sampler takes its place, in any tier",
+      ],
+    };
+  }
+
   if (placement === "engine") {
+    if (evidence.weights_present) {
+      return {
+        verdict: VERDICTS.REFUTE,
+        placement,
+        reasons: [
+          "II.8 — the difference test: this mechanism forms its output by weighting what is present, with no perturbation, no null, and no rebuilt ground — it can never differ from itself. Attention is refused as the measurement; the host may attend, the engine never does",
+        ],
+      };
+    }
+    if (evidence.scores_arrival_alone) {
+      return {
+        verdict: VERDICTS.REFUTE,
+        placement,
+        reasons: [
+          "II.9 — the revision test: this mechanism scores the arrival rather than measuring what the arrival revised. Surprise is a witnessed revision of prior structure — apply the candidate to a copy of the prior, decompose the delta across the nine operators, rank it against a null. A sound null does not rescue it — a rebuilt ground is a different question from whether anything moved. A cheap sense organ may nominate; it never decides",
+        ],
+      };
+    }
+    if (evidence.is_one_off_fix) {
+      return {
+        verdict: VERDICTS.REFUTE,
+        placement,
+        reasons: [
+          "II.7 — the convergence test: this mechanism fixes only this one thing; it is a debt, not an organ. Zoom out — intelligence converges on the same mechanism everywhere it is rewarded for being right",
+        ],
+      };
+    }
     const forbidden = (evidence.host_dependencies || []).filter((dep) =>
       FORBIDDEN_HOST_DEPENDENCIES.includes(dep),
     );
@@ -115,11 +165,13 @@ export function check(claim) {
     const tail =
       classified.verdict === VERDICTS.GAP
         ? "I.5 — no domain exists for this; it is a gap, not a category"
-        : "IV.3 — awaiting the level test; a non-above organ does not enter the engine";
+        : classified.verdict === VERDICTS.WAIT
+          ? "IV.3 — awaiting the level test; a non-above organ does not enter the engine"
+          : null;
     return {
       ...classified,
       verdict: VERDICTS.REFUTE,
-      reasons: [...classified.reasons, tail],
+      reasons: tail ? [...classified.reasons, tail] : classified.reasons,
     };
   }
 
