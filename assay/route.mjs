@@ -24,6 +24,7 @@ claim schema (check):
       "giver": "who gives it | ''",     // II.2 must name its giver
       "is_host_knowledge": bool,        // II.3 reader/host/moment/interface
       "medium_agnostic": bool,          // II.4 invariance
+      "asserted_agnosticism": bool,     // II.11 omnimodal earning veto (engine claims)
       "is_one_off_fix": bool,           // II.7 convergence veto (engine claims)
       "weights_present": bool,          // II.8 difference veto: weights what is present (engine claims)
       "consumes_source": "direct|surrogate|none", // II.6 book test (surrogate refuted everywhere)

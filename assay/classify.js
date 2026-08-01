@@ -20,6 +20,7 @@ const EVIDENCE_BOOLEANS = Object.freeze([
   "is_material_knowledge",
   "is_host_knowledge",
   "medium_agnostic",
+  "asserted_agnosticism",
   "is_one_off_fix",
   "weights_present",
   "scores_arrival_alone",
@@ -115,6 +116,15 @@ export function classify(evidence) {
         placement,
         reasons: [
           "II.9 — the revision test: this mechanism scores the arrival rather than measuring what the arrival revised. Surprise is a witnessed revision of prior structure — apply the candidate to a copy of the prior, decompose the delta across the nine operators, rank it against a null. A sound null does not rescue it — a rebuilt ground is a different question from whether anything moved. A cheap sense organ may nominate; it never decides",
+        ],
+      };
+    }
+    if (evidence.asserted_agnosticism) {
+      return {
+        verdict: VERDICTS.REFUTE,
+        placement,
+        reasons: [
+          "II.11 — the omnimodal earning test: this mechanism declares medium-agnosticism without an invariance fixture that runs it across modalities. Assertion is not measurement. If the mechanism's specificity is a property of the material, it is received typography and sits in priors with its giver (II.2); if it is a fixed grammar with no giver, no tier exists (II.1/II.5)",
         ],
       };
     }

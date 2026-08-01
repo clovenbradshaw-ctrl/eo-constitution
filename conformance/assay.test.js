@@ -47,6 +47,7 @@ test("a claim that never names its giver is a wall, not a placement (II.2)", () 
       giver: "",
       is_host_knowledge: false,
       medium_agnostic: false,
+      asserted_agnosticism: false,
       is_one_off_fix: false,
       weights_present: false,
       scores_arrival_alone: false,
@@ -65,6 +66,7 @@ test("an engine claim that owns a host dependency is refused on the seam (III.2)
     giver: "",
     is_host_knowledge: false,
     medium_agnostic: true,
+    asserted_agnosticism: false,
     is_one_off_fix: false,
     weights_present: false,
     scores_arrival_alone: false,
@@ -82,6 +84,7 @@ test("a growth-rule wait is not a placement (IV.3)", () => {
     giver: "",
     is_host_knowledge: false,
     medium_agnostic: true,
+    asserted_agnosticism: false,
     is_one_off_fix: false,
     weights_present: false,
     scores_arrival_alone: false,
@@ -102,6 +105,7 @@ test("a one-off fix is refused by the convergence test, with no stray tail (II.7
       giver: "",
       is_host_knowledge: false,
       medium_agnostic: true,
+      asserted_agnosticism: false,
       is_one_off_fix: true,
       weights_present: false,
       scores_arrival_alone: false,
@@ -124,6 +128,7 @@ test("an engine claim that fixes nothing in particular passes the convergence te
       giver: "",
       is_host_knowledge: false,
       medium_agnostic: true,
+      asserted_agnosticism: false,
       is_one_off_fix: false,
       weights_present: false,
       scores_arrival_alone: false,
@@ -146,6 +151,7 @@ test("a surrogate for the source is refused by the book test in every tier (II.6
         giver: "the communicator",
         is_host_knowledge: false,
         medium_agnostic: false,
+        asserted_agnosticism: false,
         is_one_off_fix: false,
         weights_present: false,
         scores_arrival_alone: false,
@@ -168,6 +174,7 @@ test("the who-for of a document is a received prior that names the communicator 
       giver: "the communicator",
       is_host_knowledge: false,
       medium_agnostic: false,
+      asserted_agnosticism: false,
       is_one_off_fix: false,
       weights_present: false,
       scores_arrival_alone: false,
@@ -195,6 +202,7 @@ test("a proposed_placement mismatch is refused with the deciding article cited (
       giver: "",
       is_host_knowledge: false,
       medium_agnostic: true,
+      asserted_agnosticism: false,
       is_one_off_fix: false,
       weights_present: false,
       scores_arrival_alone: false,
@@ -216,6 +224,7 @@ test("a mechanism that weights the present is refused by the difference test, in
       giver: "",
       is_host_knowledge: false,
       medium_agnostic: true,
+      asserted_agnosticism: false,
       is_one_off_fix: false,
       weights_present: true,
       scores_arrival_alone: false,
@@ -236,6 +245,7 @@ test("a mechanism that weights the present is refused by the difference test, in
       giver: "",
       is_host_knowledge: true,
       medium_agnostic: false,
+      asserted_agnosticism: false,
       is_one_off_fix: false,
       weights_present: true,
       scores_arrival_alone: false,
@@ -283,6 +293,31 @@ test("a cheap sense organ is legal in the host — only the verdict is refused (
   assert.equal(nominator.verdict, VERDICTS.PASS, "difference may nominate; it never decides in the engine");
 });
 
+test("an engine claim that declares medium-agnosticism without earning it is refused by the omnimodal earning test (II.11)", () => {
+  const vetoed = check({
+    proposed_placement: "engine",
+    evidence: {
+      ...sampleEvidence(),
+      asserted_agnosticism: true,
+      level_test: "above",
+    },
+  });
+  assert.equal(vetoed.verdict, VERDICTS.REFUTE);
+  assert.match(vetoed.reasons.join("\n"), /II\.11/);
+  assert.doesNotMatch(vetoed.reasons.join("\n"), /IV\.3/);
+  assert.doesNotMatch(vetoed.reasons.join("\n"), /II\.8/);
+
+  const receivedTypography = check({
+    proposed_placement: "priors",
+    evidence: {
+      ...sampleEvidence(),
+      is_material_knowledge: true,
+      giver: "the communicator",
+    },
+  });
+  assert.equal(receivedTypography.verdict, VERDICTS.PASS, "received typography with its giver is priors, not engine");
+});
+
 test("a claim that omits the revision-test posture is a type error, not a pass (II.9/II.5)", () => {
   const omitted = { ...sampleEvidence() };
   delete omitted.scores_arrival_alone;
@@ -298,6 +333,7 @@ function arrivalScorer() {
     giver: "",
     is_host_knowledge: false,
     medium_agnostic: true,
+    asserted_agnosticism: false,
     is_one_off_fix: false,
     weights_present: false,
     scores_arrival_alone: true,
@@ -314,6 +350,7 @@ function sampleEvidence() {
     giver: "",
     is_host_knowledge: false,
     medium_agnostic: true,
+    asserted_agnosticism: false,
     is_one_off_fix: false,
     weights_present: false,
     scores_arrival_alone: false,

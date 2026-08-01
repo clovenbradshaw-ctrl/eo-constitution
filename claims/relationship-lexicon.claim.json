@@ -9,6 +9,7 @@
     "giver": "human-edited lexicon (priors/lexicon)",
     "is_host_knowledge": false,
     "medium_agnostic": false,
+    "asserted_agnosticism": false,
     "is_one_off_fix": false,
     "weights_present": false,
     "scores_arrival_alone": false,

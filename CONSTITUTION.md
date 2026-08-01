@@ -161,6 +161,22 @@ the operator responsible and whether the rejection is final, provisional, or
 censored. A discarded alternative is consequential evidence and does not vanish
 as though it had never been possible.
 
+**II.11 The omnimodal earning test.** *Is medium-agnosticism measured, or
+declared?* The engine is what survives every text and every host (II.4), and
+that survival is earned by a test, never by an evidence boolean. A mechanism
+whose operators, gates, or vocabulary require the surfaces of one medium —
+text's lines and blank lines, a score's staves, a frame's scanlines — is not
+engine by assertion. If its medium-specificity is a property of the material
+(this document marks its divisions this way), it is received typography and
+sits in priors with its giver (II.2); if it is a fixed grammar with no giver,
+it is a surface and no tier exists (II.1/II.5). Two named consequences:
+
+- **Assertion is not measurement.** An engine claim that declares
+  `medium_agnostic: true` without an invariance fixture that runs the mechanism
+  across modalities asserts what only a test can establish.
+- **The contrast is the finding.** Where the emergent organ clears a cross-modal
+  boundary and the form grammar cannot, the failure is the placement ruling.
+
 ## Article III — The seams
 
 **III.1 Derive vs receive.** Model-tier knowledge is injected as priors,
@@ -234,3 +250,13 @@ the test.
   `true` on an engine placement is refuted. Companion spec:
   `specs/surprise-as-revision.md`; the temporal half is `eoreader6/SEED.md`
   Amendment IV.
+- **6th — The omnimodal earning test (II.11).** The engine is what survives
+  every text and every host, and that survival is earned by an invariance
+  fixture, never by an evidence boolean. A mechanism that needs one medium's
+  surfaces is either received typography (priors, with its giver) or a
+  surface with no tier; it is never engine by assertion. The contrast is the
+  finding — where the emergent organ clears a cross-modal boundary and the
+  form grammar cannot, the failure is the placement ruling. II.4 says what
+  survives; this says survival is tested, not declared. Enforced as
+  `asserted_agnosticism`, required on every claim; `true` on an engine
+  placement is refuted.

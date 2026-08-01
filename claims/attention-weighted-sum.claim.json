@@ -9,6 +9,7 @@
     "giver": "",
     "is_host_knowledge": false,
     "medium_agnostic": true,
+    "asserted_agnosticism": false,
     "is_one_off_fix": false,
     "weights_present": true,
     "scores_arrival_alone": false,
