@@ -13,6 +13,7 @@
     "is_one_off_fix": true,
     "weights_present": false,
     "scores_arrival_alone": false,
+    "needs_datacenter_compute": false,
     "consumes_source": "direct",
     "host_dependencies": [],
     "level_test": "above"

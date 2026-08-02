@@ -177,6 +177,29 @@ it is a surface and no tier exists (II.1/II.5). Two named consequences:
 - **The contrast is the finding.** Where the emergent organ clears a cross-modal
   boundary and the form grammar cannot, the failure is the placement ruling.
 
+**II.12 The local test.** *Does this mechanism run on the compute that exists?*
+The AI datacenter with infinite GPU compute does not exist. It is not a
+deployment deferred, a scale planned for, or a resource assumed — it is a
+fiction, and nothing in this lineage is invented for a fiction. We develop from
+the perspective that it is not there: the boundary conditions of the invention
+are local compute and mainstream hardware. A measurement whose correctness
+depends on compute it does not own — a fleet of GPUs, an unbounded budget, a
+model that lives in a building — is refused wherever it is the measurement. The
+host may call a model it does not own (II.3); the measurement never presumes
+one. Two named consequences:
+
+- **The boundary is a design force, not a tax.** The engine figures by
+  difference against a ground it rebuilds (II.8) not only because that is where
+  intelligence converges (II.7), but because perturbation and the null are
+  precisely the compute a single machine owns — E. coli climbs its gradient with
+  the chemistry it has, no receptor per molecule. An organ that exists only at
+  datacenter scale is not a small organ waiting to grow; it is the wrong shape.
+- **A null that does not run locally does not exist.** Every Born null must be
+  executable on the same machine that executes the observation. A ground whose
+  check presumes the datacenter is a ground the measurement can never run — and
+  an uncheckable ground is no ground: a type error, not a hard problem (II.5,
+  III.2).
+
 ## Article III — The seams
 
 **III.1 Derive vs receive.** Model-tier knowledge is injected as priors,
@@ -259,4 +282,16 @@ the test.
   form grammar cannot, the failure is the placement ruling. II.4 says what
   survives; this says survival is tested, not declared. Enforced as
   `asserted_agnosticism`, required on every claim; `true` on an engine
+  placement is refuted.
+- **7th — The local test (II.12).** The AI datacenter with infinite GPU compute
+  does not exist — it is a fiction, and nothing in this lineage is invented for
+  a fiction. The boundary conditions of the invention are local compute and
+  mainstream hardware: a measurement whose correctness depends on compute it
+  does not own is refused wherever it is the measurement, and a null that does
+  not run locally does not exist. The boundary is a design force — the engine
+  figures by difference (II.8) in part because perturbation and the null are the
+  compute a single machine owns, and E. coli is the convergence exemplar (II.7)
+  precisely because it is compute-constrained. The host may call a model it does
+  not own; the measurement never presumes one. Enforced as
+  `needs_datacenter_compute`, required on every claim; `true` on an engine
   placement is refuted.

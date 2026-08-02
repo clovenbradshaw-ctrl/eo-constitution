@@ -29,6 +29,11 @@ tests:
   against a rebuilt nothing; a mechanism that weights what is present (no
   null, no rebuilt ground) can never differ from itself and is refused as the
   measurement. The host may attend; the engine never does.
+- **II.12 Local** (7th amendment) — the AI datacenter with infinite GPU
+  compute does not exist; the boundary conditions of the invention are local
+  compute and mainstream hardware. A measurement whose correctness depends on
+  compute it does not own is refused wherever it is the measurement, and a
+  null that does not run locally does not exist.
 
 ## Using the assay
 
@@ -57,6 +62,7 @@ pre-commit hook or CI to make a misplacement fail the build.
     "medium_agnostic": true,
     "is_one_off_fix": false,
     "weights_present": false,
+    "needs_datacenter_compute": false,
     "consumes_source": "direct | surrogate | none",
     "host_dependencies": [],
     "level_test": "above"
@@ -69,7 +75,9 @@ bare evidence object or a full claim. `is_one_off_fix` is the 2nd-amendment
 convergence veto (II.7); `weights_present` is the 3rd-amendment difference
 veto (II.8) — true on an engine placement is refuted, the host may attend;
 `consumes_source` is the 1st-amendment book test (II.6) — `surrogate` is
-refuted in every tier.
+refuted in every tier; `needs_datacenter_compute` is the 7th-amendment local
+veto (II.12) — true on an engine placement is refuted, the boundary binds the
+measurement, never the host that calls a model it does not own.
 
 ## The workflow, as we iterate
 

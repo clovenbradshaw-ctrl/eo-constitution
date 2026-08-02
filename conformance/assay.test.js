@@ -51,6 +51,8 @@ test("a claim that never names its giver is a wall, not a placement (II.2)", () 
       is_one_off_fix: false,
       weights_present: false,
       scores_arrival_alone: false,
+    needs_datacenter_compute: false,
+      needs_datacenter_compute: false,
       consumes_source: "none",
       host_dependencies: [],
     },
@@ -70,6 +72,7 @@ test("an engine claim that owns a host dependency is refused on the seam (III.2)
     is_one_off_fix: false,
     weights_present: false,
     scores_arrival_alone: false,
+    needs_datacenter_compute: false,
     consumes_source: "direct",
     host_dependencies: ["randomness"],
   });
@@ -88,6 +91,7 @@ test("a growth-rule wait is not a placement (IV.3)", () => {
     is_one_off_fix: false,
     weights_present: false,
     scores_arrival_alone: false,
+    needs_datacenter_compute: false,
     consumes_source: "direct",
     host_dependencies: [],
     level_test: "unstable",
@@ -109,6 +113,8 @@ test("a one-off fix is refused by the convergence test, with no stray tail (II.7
       is_one_off_fix: true,
       weights_present: false,
       scores_arrival_alone: false,
+    needs_datacenter_compute: false,
+      needs_datacenter_compute: false,
       consumes_source: "direct",
       host_dependencies: [],
     },
@@ -132,6 +138,8 @@ test("an engine claim that fixes nothing in particular passes the convergence te
       is_one_off_fix: false,
       weights_present: false,
       scores_arrival_alone: false,
+    needs_datacenter_compute: false,
+      needs_datacenter_compute: false,
       consumes_source: "direct",
       host_dependencies: [],
       level_test: "above",
@@ -155,6 +163,9 @@ test("a surrogate for the source is refused by the book test in every tier (II.6
         is_one_off_fix: false,
         weights_present: false,
         scores_arrival_alone: false,
+    needs_datacenter_compute: false,
+        needs_datacenter_compute: false,
+      needs_datacenter_compute: false,
         consumes_source: "surrogate",
         host_dependencies: [],
       },
@@ -178,6 +189,8 @@ test("the who-for of a document is a received prior that names the communicator 
       is_one_off_fix: false,
       weights_present: false,
       scores_arrival_alone: false,
+    needs_datacenter_compute: false,
+      needs_datacenter_compute: false,
       consumes_source: "none",
       host_dependencies: [],
     },
@@ -206,6 +219,8 @@ test("a proposed_placement mismatch is refused with the deciding article cited (
       is_one_off_fix: false,
       weights_present: false,
       scores_arrival_alone: false,
+    needs_datacenter_compute: false,
+      needs_datacenter_compute: false,
       consumes_source: "direct",
       host_dependencies: [],
     },
@@ -228,6 +243,8 @@ test("a mechanism that weights the present is refused by the difference test, in
       is_one_off_fix: false,
       weights_present: true,
       scores_arrival_alone: false,
+    needs_datacenter_compute: false,
+      needs_datacenter_compute: false,
       consumes_source: "direct",
       host_dependencies: [],
       level_test: "above",
@@ -249,6 +266,8 @@ test("a mechanism that weights the present is refused by the difference test, in
       is_one_off_fix: false,
       weights_present: true,
       scores_arrival_alone: false,
+    needs_datacenter_compute: false,
+      needs_datacenter_compute: false,
       consumes_source: "direct",
       host_dependencies: ["clock"],
     },
@@ -326,6 +345,68 @@ test("a claim that omits the revision-test posture is a type error, not a pass (
   assert.match(verdict.reasons.join("\n"), /scores_arrival_alone/);
 });
 
+test("a measurement that presumes the AI datacenter is refused by the local test, with no stray tail (II.12)", () => {
+  const vetoed = check({
+    proposed_placement: "engine",
+    evidence: {
+      ...sampleEvidence(),
+      needs_datacenter_compute: true,
+      consumes_source: "direct",
+      level_test: "above",
+    },
+  });
+  assert.equal(vetoed.verdict, VERDICTS.REFUTE);
+  assert.match(vetoed.reasons.join("\n"), /II\.12/);
+  assert.doesNotMatch(vetoed.reasons.join("\n"), /II\.8/);
+  assert.doesNotMatch(vetoed.reasons.join("\n"), /II\.9/);
+  assert.doesNotMatch(vetoed.reasons.join("\n"), /IV\.3/);
+
+  const runsLocal = check({
+    proposed_placement: "engine",
+    evidence: {
+      ...sampleEvidence(),
+      needs_datacenter_compute: false,
+      consumes_source: "direct",
+      level_test: "above",
+    },
+  });
+  assert.equal(runsLocal.verdict, VERDICTS.PASS, "a measurement that runs on the compute it owns passes the local test");
+});
+
+test("a claim that omits the local-test posture is a type error, not a pass (II.12/II.5)", () => {
+  const omitted = { ...sampleEvidence() };
+  delete omitted.needs_datacenter_compute;
+  const verdict = classify(omitted);
+  assert.equal(verdict.verdict, VERDICTS.GAP);
+  assert.match(verdict.reasons.join("\n"), /needs_datacenter_compute/);
+});
+
+test("the host may call a model it does not own; the measurement never presumes one (II.12/II.3)", () => {
+  const hostCalls = check({
+    proposed_placement: "app",
+    evidence: {
+      ...sampleEvidence(),
+      is_host_knowledge: true,
+      needs_datacenter_compute: true,
+      consumes_source: "direct",
+      host_dependencies: ["network"],
+    },
+  });
+  assert.equal(hostCalls.verdict, VERDICTS.PASS, "model routing is app-owned (I.4, II.3); the boundary binds the measurement");
+
+  const enginePresumes = check({
+    proposed_placement: "engine",
+    evidence: {
+      ...sampleEvidence(),
+      needs_datacenter_compute: true,
+      consumes_source: "direct",
+      level_test: "above",
+    },
+  });
+  assert.equal(enginePresumes.verdict, VERDICTS.REFUTE);
+  assert.match(enginePresumes.reasons.join("\n"), /II\.12/);
+});
+
 function arrivalScorer() {
   return {
     needs_name_or_surface: false,
@@ -337,6 +418,7 @@ function arrivalScorer() {
     is_one_off_fix: false,
     weights_present: false,
     scores_arrival_alone: true,
+    needs_datacenter_compute: false,
     consumes_source: "direct",
     host_dependencies: [],
     level_test: "above",
@@ -354,6 +436,7 @@ function sampleEvidence() {
     is_one_off_fix: false,
     weights_present: false,
     scores_arrival_alone: false,
+    needs_datacenter_compute: false,
     consumes_source: "none",
     host_dependencies: [],
   };

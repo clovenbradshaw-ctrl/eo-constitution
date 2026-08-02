@@ -24,6 +24,7 @@ const EVIDENCE_BOOLEANS = Object.freeze([
   "is_one_off_fix",
   "weights_present",
   "scores_arrival_alone",
+  "needs_datacenter_compute",
 ]);
 
 export function classify(evidence) {
@@ -134,6 +135,15 @@ export function classify(evidence) {
         placement,
         reasons: [
           "II.7 — the convergence test: this mechanism fixes only this one thing; it is a debt, not an organ. Zoom out — intelligence converges on the same mechanism everywhere it is rewarded for being right",
+        ],
+      };
+    }
+    if (evidence.needs_datacenter_compute) {
+      return {
+        verdict: VERDICTS.REFUTE,
+        placement,
+        reasons: [
+          "II.12 — the local test: this mechanism's correctness depends on compute this lineage does not own. The AI datacenter with infinite GPU compute does not exist; the boundary conditions of the invention are local compute and mainstream hardware. A measurement that presumes the datacenter is refused wherever it is the measurement; a null that does not run locally does not exist",
         ],
       };
     }

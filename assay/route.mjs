@@ -27,6 +27,8 @@ claim schema (check):
       "asserted_agnosticism": bool,     // II.11 omnimodal earning veto (engine claims)
       "is_one_off_fix": bool,           // II.7 convergence veto (engine claims)
       "weights_present": bool,          // II.8 difference veto: weights what is present (engine claims)
+      "scores_arrival_alone": bool,     // II.9 revision veto: scores the arrival, not the revision (engine claims)
+      "needs_datacenter_compute": bool, // II.12 local veto: presumes the AI datacenter (engine claims)
       "consumes_source": "direct|surrogate|none", // II.6 book test (surrogate refuted everywhere)
       "host_dependencies": [...],       // III.2 engine owns none
       "level_test": "above|peer|unstable" // IV.3 growth rule (engine organs)
