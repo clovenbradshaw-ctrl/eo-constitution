@@ -51,6 +51,7 @@ test("a claim that never names its giver is a wall, not a placement (II.2)", () 
       is_one_off_fix: false,
       weights_present: false,
       scores_arrival_alone: false,
+      unconditional_null: false,
     needs_datacenter_compute: false,
       needs_datacenter_compute: false,
       consumes_source: "none",
@@ -72,6 +73,7 @@ test("an engine claim that owns a host dependency is refused on the seam (III.2)
     is_one_off_fix: false,
     weights_present: false,
     scores_arrival_alone: false,
+    unconditional_null: false,
     needs_datacenter_compute: false,
     consumes_source: "direct",
     host_dependencies: ["randomness"],
@@ -91,6 +93,7 @@ test("a growth-rule wait is not a placement (IV.3)", () => {
     is_one_off_fix: false,
     weights_present: false,
     scores_arrival_alone: false,
+    unconditional_null: false,
     needs_datacenter_compute: false,
     consumes_source: "direct",
     host_dependencies: [],
@@ -113,6 +116,7 @@ test("a one-off fix is refused by the convergence test, with no stray tail (II.7
       is_one_off_fix: true,
       weights_present: false,
       scores_arrival_alone: false,
+      unconditional_null: false,
     needs_datacenter_compute: false,
       needs_datacenter_compute: false,
       consumes_source: "direct",
@@ -138,6 +142,7 @@ test("an engine claim that fixes nothing in particular passes the convergence te
       is_one_off_fix: false,
       weights_present: false,
       scores_arrival_alone: false,
+      unconditional_null: false,
     needs_datacenter_compute: false,
       needs_datacenter_compute: false,
       consumes_source: "direct",
@@ -163,6 +168,7 @@ test("a surrogate for the source is refused by the book test in every tier (II.6
         is_one_off_fix: false,
         weights_present: false,
         scores_arrival_alone: false,
+        unconditional_null: false,
     needs_datacenter_compute: false,
         needs_datacenter_compute: false,
       needs_datacenter_compute: false,
@@ -189,6 +195,7 @@ test("the who-for of a document is a received prior that names the communicator 
       is_one_off_fix: false,
       weights_present: false,
       scores_arrival_alone: false,
+      unconditional_null: false,
     needs_datacenter_compute: false,
       needs_datacenter_compute: false,
       consumes_source: "none",
@@ -219,6 +226,7 @@ test("a proposed_placement mismatch is refused with the deciding article cited (
       is_one_off_fix: false,
       weights_present: false,
       scores_arrival_alone: false,
+      unconditional_null: false,
     needs_datacenter_compute: false,
       needs_datacenter_compute: false,
       consumes_source: "direct",
@@ -243,6 +251,7 @@ test("a mechanism that weights the present is refused by the difference test, in
       is_one_off_fix: false,
       weights_present: true,
       scores_arrival_alone: false,
+      unconditional_null: false,
     needs_datacenter_compute: false,
       needs_datacenter_compute: false,
       consumes_source: "direct",
@@ -266,6 +275,7 @@ test("a mechanism that weights the present is refused by the difference test, in
       is_one_off_fix: false,
       weights_present: true,
       scores_arrival_alone: false,
+      unconditional_null: false,
     needs_datacenter_compute: false,
       needs_datacenter_compute: false,
       consumes_source: "direct",
@@ -345,6 +355,42 @@ test("a claim that omits the revision-test posture is a type error, not a pass (
   assert.match(verdict.reasons.join("\n"), /scores_arrival_alone/);
 });
 
+test("a null that differs from the observation in an untested axis is refused by the commensurability test, even with a sound null (II.10)", () => {
+  const vetoed = check({
+    proposed_placement: "engine",
+    evidence: {
+      ...sampleEvidence(),
+      unconditional_null: true,
+      consumes_source: "direct",
+      level_test: "above",
+    },
+  });
+  assert.equal(vetoed.verdict, VERDICTS.REFUTE);
+  assert.match(vetoed.reasons.join("\n"), /II\.10/);
+  assert.doesNotMatch(vetoed.reasons.join("\n"), /II\.8/);
+  assert.doesNotMatch(vetoed.reasons.join("\n"), /II\.9/);
+  assert.doesNotMatch(vetoed.reasons.join("\n"), /IV\.3/);
+
+  const conditionalNull = check({
+    proposed_placement: "engine",
+    evidence: {
+      ...sampleEvidence(),
+      unconditional_null: false,
+      consumes_source: "direct",
+      level_test: "above",
+    },
+  });
+  assert.equal(conditionalNull.verdict, VERDICTS.PASS, "a null matched to the observation's own axis passes the commensurability test");
+});
+
+test("a claim that omits the commensurability-test posture is a type error, not a pass (II.10/II.5)", () => {
+  const omitted = { ...sampleEvidence() };
+  delete omitted.unconditional_null;
+  const verdict = classify(omitted);
+  assert.equal(verdict.verdict, VERDICTS.GAP);
+  assert.match(verdict.reasons.join("\n"), /unconditional_null/);
+});
+
 test("a measurement that presumes the AI datacenter is refused by the local test, with no stray tail (II.12)", () => {
   const vetoed = check({
     proposed_placement: "engine",
@@ -418,6 +464,7 @@ function arrivalScorer() {
     is_one_off_fix: false,
     weights_present: false,
     scores_arrival_alone: true,
+    unconditional_null: false,
     needs_datacenter_compute: false,
     consumes_source: "direct",
     host_dependencies: [],
@@ -436,6 +483,7 @@ function sampleEvidence() {
     is_one_off_fix: false,
     weights_present: false,
     scores_arrival_alone: false,
+    unconditional_null: false,
     needs_datacenter_compute: false,
     consumes_source: "none",
     host_dependencies: [],

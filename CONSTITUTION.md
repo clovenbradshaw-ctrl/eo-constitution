@@ -161,6 +161,30 @@ the operator responsible and whether the rejection is final, provisional, or
 censored. A discarded alternative is consequential evidence and does not vanish
 as though it had never been possible.
 
+**II.10 The commensurability test.** *Does the null differ from the
+observation in exactly one axis — the one being tested?* A ground is a
+nothing constructed by perturbing what is present, and it is the null **for**
+a particular observation. It must share that observation's operation, extent,
+multiplicity, and spec, and differ only in the axis under test. A null that
+differs in any other axis measures that other difference and reports it as
+the finding. Every Born null in this lineage is a **conditional** null: it
+varies along the axis the artefact exploits. An unconditional null is only a
+change of units, and it fails invisibly and globally — the record shows a real
+ground, a real rank, a real spec, and no trace of the substitution. Three
+named consequences:
+
+- **The null undergoes what the observation underwent.** If the observation
+  removes material, the null removes material; if it grows, the null grows the
+  same way; if it filters, the null is preserved under that filter. The
+  matched counterfactual is the one to build, not the convenient one.
+- **Selection is an axis.** A best-of-n observation gets a best-of-n null. A
+  cluster chosen for being extreme is not placed against subsets drawn at
+  random. "The best I could find" beats "one drawn at random" whether or not
+  there is anything to find.
+- **Commensurability is checked by type, not by hope.** Extent, spec, `n`, and
+  direction are carried on the ground and refused when they disagree (II.5,
+  type error before null) — never left to a reviewer to notice.
+
 **II.11 The omnimodal earning test.** *Is medium-agnosticism measured, or
 declared?* The engine is what survives every text and every host (II.4), and
 that survival is earned by a test, never by an evidence boolean. A mechanism
@@ -273,6 +297,17 @@ the test.
   `true` on an engine placement is refuted. Companion spec:
   `specs/surprise-as-revision.md`; the temporal half is `eoreader6/SEED.md`
   Amendment IV.
+- **5th — The commensurability test (II.10).** A null is the null *for* an
+  observation and must differ from it in exactly one axis: the one under test.
+  Every Born null is conditional — it varies along the axis the artefact
+  exploits; an unconditional null is a change of units that fails invisibly
+  and globally, citing a real ground and a real rank throughout. Its three
+  consequences: the null undergoes what the observation underwent, selection
+  is an axis (a best-of-n observation gets a best-of-n null), and
+  commensurability is checked by type, not by hope. II.8 asks whether a ground
+  was rebuilt; II.9 asks whether anything moved; this asks whether the ground
+  is the one the question needed. Enforced as `unconditional_null`, required on
+  every claim; `true` on an engine placement is refuted.
 - **6th — The omnimodal earning test (II.11).** The engine is what survives
   every text and every host, and that survival is earned by an invariance
   fixture, never by an evidence boolean. A mechanism that needs one medium's

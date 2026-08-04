@@ -1,8 +1,13 @@
 # Proposed 5th amendment — the commensurability test (II.10)
 
-**Status: PROPOSAL. Not applied.** IV.2 — the assay proposes and checks, it
-never amends; amendment is a human act. Nothing in `CONSTITUTION.md`,
-`assay/classify.js`, or `claims/` has been changed by this document.
+**Status: APPLIED 2026-08-04.** IV.2 — the assay proposes and checks, it never
+amends; amendment is a human act. This proposal was approved by the human
+disposing and landed as a single change: `CONSTITUTION.md` gained Article II.10
+and the 5th amendment-log entry; `assay/classify.js` gained the
+`unconditional_null` boolean and its engine veto; every claim in `claims/`
+gained the boolean; the exemplar `chosen-cluster-random-null` was recorded as
+a refuted placement; and `conformance/assay.test.js` gained the changed
+failing test (II.10) the amendment required (IV.1).
 
 ---
 
