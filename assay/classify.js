@@ -24,6 +24,7 @@ const EVIDENCE_BOOLEANS = Object.freeze([
   "is_one_off_fix",
   "weights_present",
   "scores_arrival_alone",
+  "unconditional_null",
   "needs_datacenter_compute",
 ]);
 
@@ -117,6 +118,15 @@ export function classify(evidence) {
         placement,
         reasons: [
           "II.9 — the revision test: this mechanism scores the arrival rather than measuring what the arrival revised. Surprise is a witnessed revision of prior structure — apply the candidate to a copy of the prior, decompose the delta across the nine operators, rank it against a null. A sound null does not rescue it — a rebuilt ground is a different question from whether anything moved. A cheap sense organ may nominate; it never decides",
+        ],
+      };
+    }
+    if (evidence.unconditional_null) {
+      return {
+        verdict: VERDICTS.REFUTE,
+        placement,
+        reasons: [
+          "II.10 — the commensurability test: this mechanism's null differs from the observation in an axis other than the one under test. It is a units change, not a ground. The null undergoes what the observation underwent; selection is an axis; commensurability is checked by type, not by hope",
         ],
       };
     }
