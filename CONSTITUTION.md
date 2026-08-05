@@ -330,3 +330,40 @@ the test.
   not own; the measurement never presumes one. Enforced as
   `needs_datacenter_compute`, required on every claim; `true` on an engine
   placement is refuted.
+- **8th — The script earning test (II.13).** A mechanism scoped to one
+  language or script is not a defect; asserting it is script-agnostic
+  without a cross-script fixture, or without naming that scope as a received
+  giver (II.2), is. The silence is the more severe failure than the scope —
+  a disclosed English-only module that returns no signal on Greek is honest;
+  an equally-scoped module claiming generality is not. Enforced as
+  `undisclosed_script_scope`, required on every claim; `true` on an engine
+  placement is refuted.
+- **9th — The fold fidelity test (II.14).** A compression organ is not
+  refused for compressing (II.6 already permits the honest altitude view);
+  it is refused for two specific overclaims. "Lossless" means zero
+  fabrication verified against real source offsets, never completeness — a
+  claim of completeness for a mechanism that compresses is refuted in every
+  tier. A drill-down trigger must use the same organ-computed significance
+  signal that governs the fold, never a keyword or substring match against
+  the compressed content, which relocates flooding-by-occurrence rather than
+  solving it. Enforced as `fold_overclaims_completeness` and
+  `drilldown_uses_keyword_trigger`, required on every claim; `true` on
+  either is refuted on an engine placement.
+- **11th — The surprise-disambiguation test (II.16).** A surprise or
+  divergence score against an external prior conflates narrative novelty
+  with mere genre-distinctiveness unless something separates them. A
+  mechanism that emits one number without a recurrence check (the cheapest
+  available separator) or a disclosure that the two claims are unseparated
+  is refused, one layer downstream of II.9's arrival-vs-revision distinction.
+  Enforced as `surprise_claim_undisambiguated`, required on every claim;
+  `true` on an engine placement is refuted.
+
+*The 10th amendment — the validation discipline test (II.15) — remains a
+draft proposal (`AMENDMENT-10-PROPOSAL.md`) and is not entered here. IV.1
+requires a changed failing test in the same change as the article; II.15's
+own proposal leaves its enforcement shape (a required evidence field vs. a
+conformance-only fixture requirement) an open choice for the human disposing
+it, so no such test yet exists. Numbering 8th, 9th, 11th above is not a
+renumbering to close the gap — the 10th amendment keeps its number until it
+is disposed, so its own eventual entry does not require renumbering
+anything that came after it.*

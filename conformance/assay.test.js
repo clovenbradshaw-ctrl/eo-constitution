@@ -54,6 +54,10 @@ test("a claim that never names its giver is a wall, not a placement (II.2)", () 
       unconditional_null: false,
     needs_datacenter_compute: false,
       needs_datacenter_compute: false,
+      undisclosed_script_scope: false,
+      fold_overclaims_completeness: false,
+      drilldown_uses_keyword_trigger: false,
+      surprise_claim_undisambiguated: false,
       consumes_source: "none",
       host_dependencies: [],
     },
@@ -75,6 +79,10 @@ test("an engine claim that owns a host dependency is refused on the seam (III.2)
     scores_arrival_alone: false,
     unconditional_null: false,
     needs_datacenter_compute: false,
+    undisclosed_script_scope: false,
+    fold_overclaims_completeness: false,
+    drilldown_uses_keyword_trigger: false,
+    surprise_claim_undisambiguated: false,
     consumes_source: "direct",
     host_dependencies: ["randomness"],
   });
@@ -95,6 +103,10 @@ test("a growth-rule wait is not a placement (IV.3)", () => {
     scores_arrival_alone: false,
     unconditional_null: false,
     needs_datacenter_compute: false,
+    undisclosed_script_scope: false,
+    fold_overclaims_completeness: false,
+    drilldown_uses_keyword_trigger: false,
+    surprise_claim_undisambiguated: false,
     consumes_source: "direct",
     host_dependencies: [],
     level_test: "unstable",
@@ -119,6 +131,10 @@ test("a one-off fix is refused by the convergence test, with no stray tail (II.7
       unconditional_null: false,
     needs_datacenter_compute: false,
       needs_datacenter_compute: false,
+      undisclosed_script_scope: false,
+      fold_overclaims_completeness: false,
+      drilldown_uses_keyword_trigger: false,
+      surprise_claim_undisambiguated: false,
       consumes_source: "direct",
       host_dependencies: [],
     },
@@ -145,6 +161,10 @@ test("an engine claim that fixes nothing in particular passes the convergence te
       unconditional_null: false,
     needs_datacenter_compute: false,
       needs_datacenter_compute: false,
+      undisclosed_script_scope: false,
+      fold_overclaims_completeness: false,
+      drilldown_uses_keyword_trigger: false,
+      surprise_claim_undisambiguated: false,
       consumes_source: "direct",
       host_dependencies: [],
       level_test: "above",
@@ -172,6 +192,10 @@ test("a surrogate for the source is refused by the book test in every tier (II.6
     needs_datacenter_compute: false,
         needs_datacenter_compute: false,
       needs_datacenter_compute: false,
+      undisclosed_script_scope: false,
+      fold_overclaims_completeness: false,
+      drilldown_uses_keyword_trigger: false,
+      surprise_claim_undisambiguated: false,
         consumes_source: "surrogate",
         host_dependencies: [],
       },
@@ -198,6 +222,10 @@ test("the who-for of a document is a received prior that names the communicator 
       unconditional_null: false,
     needs_datacenter_compute: false,
       needs_datacenter_compute: false,
+      undisclosed_script_scope: false,
+      fold_overclaims_completeness: false,
+      drilldown_uses_keyword_trigger: false,
+      surprise_claim_undisambiguated: false,
       consumes_source: "none",
       host_dependencies: [],
     },
@@ -229,6 +257,10 @@ test("a proposed_placement mismatch is refused with the deciding article cited (
       unconditional_null: false,
     needs_datacenter_compute: false,
       needs_datacenter_compute: false,
+      undisclosed_script_scope: false,
+      fold_overclaims_completeness: false,
+      drilldown_uses_keyword_trigger: false,
+      surprise_claim_undisambiguated: false,
       consumes_source: "direct",
       host_dependencies: [],
     },
@@ -254,6 +286,10 @@ test("a mechanism that weights the present is refused by the difference test, in
       unconditional_null: false,
     needs_datacenter_compute: false,
       needs_datacenter_compute: false,
+      undisclosed_script_scope: false,
+      fold_overclaims_completeness: false,
+      drilldown_uses_keyword_trigger: false,
+      surprise_claim_undisambiguated: false,
       consumes_source: "direct",
       host_dependencies: [],
       level_test: "above",
@@ -278,6 +314,10 @@ test("a mechanism that weights the present is refused by the difference test, in
       unconditional_null: false,
     needs_datacenter_compute: false,
       needs_datacenter_compute: false,
+      undisclosed_script_scope: false,
+      fold_overclaims_completeness: false,
+      drilldown_uses_keyword_trigger: false,
+      surprise_claim_undisambiguated: false,
       consumes_source: "direct",
       host_dependencies: ["clock"],
     },
@@ -397,6 +437,10 @@ test("a measurement that presumes the AI datacenter is refused by the local test
     evidence: {
       ...sampleEvidence(),
       needs_datacenter_compute: true,
+      undisclosed_script_scope: false,
+      fold_overclaims_completeness: false,
+      drilldown_uses_keyword_trigger: false,
+      surprise_claim_undisambiguated: false,
       consumes_source: "direct",
       level_test: "above",
     },
@@ -412,6 +456,10 @@ test("a measurement that presumes the AI datacenter is refused by the local test
     evidence: {
       ...sampleEvidence(),
       needs_datacenter_compute: false,
+      undisclosed_script_scope: false,
+      fold_overclaims_completeness: false,
+      drilldown_uses_keyword_trigger: false,
+      surprise_claim_undisambiguated: false,
       consumes_source: "direct",
       level_test: "above",
     },
@@ -434,6 +482,10 @@ test("the host may call a model it does not own; the measurement never presumes 
       ...sampleEvidence(),
       is_host_knowledge: true,
       needs_datacenter_compute: true,
+      undisclosed_script_scope: false,
+      fold_overclaims_completeness: false,
+      drilldown_uses_keyword_trigger: false,
+      surprise_claim_undisambiguated: false,
       consumes_source: "direct",
       host_dependencies: ["network"],
     },
@@ -445,6 +497,10 @@ test("the host may call a model it does not own; the measurement never presumes 
     evidence: {
       ...sampleEvidence(),
       needs_datacenter_compute: true,
+      undisclosed_script_scope: false,
+      fold_overclaims_completeness: false,
+      drilldown_uses_keyword_trigger: false,
+      surprise_claim_undisambiguated: false,
       consumes_source: "direct",
       level_test: "above",
     },
@@ -452,6 +508,126 @@ test("the host may call a model it does not own; the measurement never presumes 
   assert.equal(enginePresumes.verdict, VERDICTS.REFUTE);
   assert.match(enginePresumes.reasons.join("\n"), /II\.12/);
 });
+
+test("a mechanism scoped to one language or script that asserts general applicability is refused by the script earning test (II.13)", () => {
+  const vetoed = check({
+    proposed_placement: "engine",
+    evidence: {
+      ...sampleEvidence(),
+      undisclosed_script_scope: true,
+      consumes_source: "direct",
+      level_test: "above",
+    },
+  });
+  assert.equal(vetoed.verdict, VERDICTS.REFUTE);
+  assert.match(vetoed.reasons.join("\n"), /II\.13/);
+  assert.doesNotMatch(vetoed.reasons.join("\n"), /IV\.3/);
+
+  const disclosed = check({
+    proposed_placement: "engine",
+    evidence: {
+      ...sampleEvidence(),
+      undisclosed_script_scope: false,
+      consumes_source: "direct",
+      level_test: "above",
+    },
+  });
+  assert.equal(disclosed.verdict, VERDICTS.PASS, "a disclosed script scope with no fixture claim is not refused by II.13");
+});
+
+test("a claim that omits the script-earning-test posture is a type error, not a pass (II.13/II.5)", () => {
+  const omitted = { ...sampleEvidence() };
+  delete omitted.undisclosed_script_scope;
+  const verdict = classify(omitted);
+  assert.equal(verdict.verdict, VERDICTS.GAP);
+  assert.match(verdict.reasons.join("\n"), /undisclosed_script_scope/);
+});
+
+test("a fold organ that claims completeness for compressed output is refused by the fold fidelity test (II.14)", () => {
+  const vetoed = check({
+    proposed_placement: "engine",
+    evidence: {
+      ...sampleEvidence(),
+      fold_overclaims_completeness: true,
+      consumes_source: "direct",
+      level_test: "above",
+    },
+  });
+  assert.equal(vetoed.verdict, VERDICTS.REFUTE);
+  assert.match(vetoed.reasons.join("\n"), /II\.14/);
+  assert.doesNotMatch(vetoed.reasons.join("\n"), /IV\.3/);
+});
+
+test("a drill-down trigger driven by a keyword match instead of the fold's own significance signal is refused (II.14)", () => {
+  const vetoed = check({
+    proposed_placement: "engine",
+    evidence: {
+      ...sampleEvidence(),
+      drilldown_uses_keyword_trigger: true,
+      consumes_source: "direct",
+      level_test: "above",
+    },
+  });
+  assert.equal(vetoed.verdict, VERDICTS.REFUTE);
+  assert.match(vetoed.reasons.join("\n"), /II\.14/);
+
+  const organComputed = check({
+    proposed_placement: "engine",
+    evidence: {
+      ...sampleEvidence(),
+      fold_overclaims_completeness: false,
+      drilldown_uses_keyword_trigger: false,
+      consumes_source: "direct",
+      level_test: "above",
+    },
+  });
+  assert.equal(organComputed.verdict, VERDICTS.PASS, "a fold organ that neither overclaims nor keyword-triggers passes II.14");
+});
+
+test("a claim that omits either fold-fidelity posture is a type error, not a pass (II.14/II.5)", () => {
+  const omittedCompleteness = { ...sampleEvidence() };
+  delete omittedCompleteness.fold_overclaims_completeness;
+  assert.equal(classify(omittedCompleteness).verdict, VERDICTS.GAP);
+  assert.match(classify(omittedCompleteness).reasons.join("\n"), /fold_overclaims_completeness/);
+
+  const omittedTrigger = { ...sampleEvidence() };
+  delete omittedTrigger.drilldown_uses_keyword_trigger;
+  assert.equal(classify(omittedTrigger).verdict, VERDICTS.GAP);
+  assert.match(classify(omittedTrigger).reasons.join("\n"), /drilldown_uses_keyword_trigger/);
+});
+
+test("a surprise score against a prior that does not separate novelty from genre-distinctiveness is refused, even with a sound null (II.16)", () => {
+  const vetoed = check({ proposed_placement: "engine", evidence: undisambiguatedSurprise() });
+  assert.equal(vetoed.verdict, VERDICTS.REFUTE);
+  assert.match(vetoed.reasons.join("\n"), /II\.16/);
+  // II.9 is a different veto: this claim already measures a revision, not an
+  // arrival score, and still fails — disambiguation is one layer downstream.
+  assert.doesNotMatch(vetoed.reasons.join("\n"), /II\.9/);
+
+  const disambiguated = check({
+    proposed_placement: "engine",
+    evidence: { ...undisambiguatedSurprise(), surprise_claim_undisambiguated: false },
+  });
+  assert.equal(disambiguated.verdict, VERDICTS.PASS, "a separated or disclosed-as-unseparated surprise claim is the engine's own act");
+});
+
+test("a claim that omits the surprise-disambiguation posture is a type error, not a pass (II.16/II.5)", () => {
+  const omitted = { ...sampleEvidence() };
+  delete omitted.surprise_claim_undisambiguated;
+  const verdict = classify(omitted);
+  assert.equal(verdict.verdict, VERDICTS.GAP);
+  assert.match(verdict.reasons.join("\n"), /surprise_claim_undisambiguated/);
+});
+
+function undisambiguatedSurprise() {
+  return {
+    ...sampleEvidence(),
+    surprise_claim_undisambiguated: true,
+    consumes_source: "direct",
+    host_dependencies: [],
+    level_test: "above",
+  };
+}
 
 function arrivalScorer() {
   return {
@@ -466,6 +642,10 @@ function arrivalScorer() {
     scores_arrival_alone: true,
     unconditional_null: false,
     needs_datacenter_compute: false,
+    undisclosed_script_scope: false,
+    fold_overclaims_completeness: false,
+    drilldown_uses_keyword_trigger: false,
+    surprise_claim_undisambiguated: false,
     consumes_source: "direct",
     host_dependencies: [],
     level_test: "above",
@@ -485,6 +665,10 @@ function sampleEvidence() {
     scores_arrival_alone: false,
     unconditional_null: false,
     needs_datacenter_compute: false,
+    undisclosed_script_scope: false,
+    fold_overclaims_completeness: false,
+    drilldown_uses_keyword_trigger: false,
+    surprise_claim_undisambiguated: false,
     consumes_source: "none",
     host_dependencies: [],
   };

@@ -26,6 +26,10 @@ const EVIDENCE_BOOLEANS = Object.freeze([
   "scores_arrival_alone",
   "unconditional_null",
   "needs_datacenter_compute",
+  "undisclosed_script_scope",
+  "fold_overclaims_completeness",
+  "drilldown_uses_keyword_trigger",
+  "surprise_claim_undisambiguated",
 ]);
 
 export function classify(evidence) {
@@ -121,6 +125,15 @@ export function classify(evidence) {
         ],
       };
     }
+    if (evidence.surprise_claim_undisambiguated) {
+      return {
+        verdict: VERDICTS.REFUTE,
+        placement,
+        reasons: [
+          "II.16 — the surprise-disambiguation test: this mechanism reports a surprise/divergence signal without separating narrative novelty from mere genre-distinctiveness, and without disclosing the conflation. 'Surprising relative to a prior' is at least two claims; a consumer cannot tell them apart from one number",
+        ],
+      };
+    }
     if (evidence.unconditional_null) {
       return {
         verdict: VERDICTS.REFUTE,
@@ -130,12 +143,39 @@ export function classify(evidence) {
         ],
       };
     }
+    if (evidence.fold_overclaims_completeness) {
+      return {
+        verdict: VERDICTS.REFUTE,
+        placement,
+        reasons: [
+          "II.14 — the fold fidelity test: this mechanism claims completeness for output that compresses its source. 'Lossless' means zero fabrication verified against real source offsets, never completeness — compression that keeps everything is not compression",
+        ],
+      };
+    }
+    if (evidence.drilldown_uses_keyword_trigger) {
+      return {
+        verdict: VERDICTS.REFUTE,
+        placement,
+        reasons: [
+          "II.14 — the fold fidelity test: this mechanism's drill-down trigger is a keyword or substring match against compressed content rather than the organ-computed significance signal that governs the fold. Flooding-by-occurrence relocated into the trigger is not solved",
+        ],
+      };
+    }
     if (evidence.asserted_agnosticism) {
       return {
         verdict: VERDICTS.REFUTE,
         placement,
         reasons: [
           "II.11 — the omnimodal earning test: this mechanism declares medium-agnosticism without an invariance fixture that runs it across modalities. Assertion is not measurement. If the mechanism's specificity is a property of the material, it is received typography and sits in priors with its giver (II.2); if it is a fixed grammar with no giver, no tier exists (II.1/II.5)",
+        ],
+      };
+    }
+    if (evidence.undisclosed_script_scope) {
+      return {
+        verdict: VERDICTS.REFUTE,
+        placement,
+        reasons: [
+          "II.13 — the script earning test: this mechanism is scoped to one language, script, or lexicon and asserts general applicability without a cross-script invariance fixture or a disclosed giver naming its scope. Silence about the boundary is the defect, not the boundary itself",
         ],
       };
     }
