@@ -15,6 +15,10 @@
     "scores_arrival_alone": false,
     "unconditional_null": false,
     "needs_datacenter_compute": false,
+    "undisclosed_script_scope": false,
+    "fold_overclaims_completeness": false,
+    "drilldown_uses_keyword_trigger": false,
+    "surprise_claim_undisambiguated": false,
     "consumes_source": "direct",
     "host_dependencies": [],
     "level_test": "above"
