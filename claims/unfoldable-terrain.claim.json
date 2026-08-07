@@ -1,0 +1,28 @@
+{
+  "claim_id": "unfoldable-terrain",
+  "what": "a terrain-level summary that reports a pattern at altitude with no drill-down path back to the exact passages it was folded from",
+  "proposed_placement": "engine",
+  "expect": "refute",
+  "notes": "Exemplar for the 12th amendment (II.17). The shape of a claim that passes every earlier article — medium-agnostic (II.11), weights nothing present (II.8), measures a genuine revision (II.9), fixes nothing in particular (II.7), owns no clock or I/O (III.2), scoped to no one script (II.13), claims no completeness for its compression (II.14), disambiguates its surprise (II.16) — and is refuted only by the boundary: content exists at this altitude with no way back to the material it was folded from. A fold that cannot be drilled back down is a summary, and a summary is a surrogate (II.6). Companion case: eoreader6/scripts/LOSS-LESS-LADDER.md.",
+  "evidence": {
+    "needs_name_or_surface": false,
+    "is_material_knowledge": false,
+    "giver": "",
+    "is_host_knowledge": false,
+    "medium_agnostic": true,
+    "asserted_agnosticism": false,
+    "is_one_off_fix": false,
+    "weights_present": false,
+    "scores_arrival_alone": false,
+    "unconditional_null": false,
+    "needs_datacenter_compute": false,
+    "undisclosed_script_scope": false,
+    "fold_overclaims_completeness": false,
+    "drilldown_uses_keyword_trigger": false,
+    "surprise_claim_undisambiguated": false,
+    "fabricates_at_altitude": true,
+    "consumes_source": "direct",
+    "host_dependencies": [],
+    "level_test": "above"
+  }
+}

@@ -19,6 +19,7 @@
     "fold_overclaims_completeness": false,
     "drilldown_uses_keyword_trigger": false,
     "surprise_claim_undisambiguated": false,
+    "fabricates_at_altitude": false,
     "consumes_source": "none",
     "host_dependencies": [
       "io"

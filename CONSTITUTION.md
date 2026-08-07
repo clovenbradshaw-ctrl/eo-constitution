@@ -12,8 +12,11 @@ misreading of this document, even when the letter of an article permits it.
 
 **The one operation is the physiology:** a figure is difference against a
 ground you rebuild; pattern is the difference the figure makes; level is
-another figure's ground. The repos are the three terms plus the surfaces
-where the difference is experienced.
+another figure's ground. Folding is a lossless change of resolution — a
+higher terrain is the same reading at lower resolution, never new content,
+and from every altitude there is a way back down to the material it folded.
+The repos are the three terms plus the surfaces where the difference is
+experienced.
 
 **The book test is the fidelity:** every source is addressed, and a faithful
 reading does the work its communicator set — the book is read, not routed
@@ -224,6 +227,25 @@ one. Two named consequences:
   an uncheckable ground is no ground: a type error, not a hard problem (II.5,
   III.2).
 
+**II.17 The lossless fold test.** *Does this mechanism reduce resolution, or
+make something up?* The ladder of terrains is one reading at decreasing
+resolution, never new content. A fold reduces resolution and invents
+nothing: whatever any altitude asserts, a drill-down path reaches the
+material beneath it — a kind to its members, a member to its passages, a
+passage to its bytes. A fold that cannot be drilled back down has not
+folded; it has fabricated a figure, and a figure with no ground is refused
+wherever it is the measurement. A summary is a surrogate (II.6). Two named
+consequences:
+
+- **Resolution, never invention.** Lowering resolution is legal only while
+  every step keeps the way back to the exact material it folded. Content
+  that exists at altitude and nowhere below it is not a discovery; it is a
+  hallucination with a rank.
+- **The fold is the memory.** Higher terrains are folds of what was read,
+  held off-prompt; assembling a reading never requires the whole reachable
+  corpus to be restated in one place. A drill-down is an address, not an
+  answer — the source is cited, never the fold.
+
 ## Article III — The seams
 
 **III.1 Derive vs receive.** Model-tier knowledge is injected as priors,
@@ -367,3 +389,17 @@ it, so no such test yet exists. Numbering 8th, 9th, 11th above is not a
 renumbering to close the gap — the 10th amendment keeps its number until it
 is disposed, so its own eventual entry does not require renumbering
 anything that came after it.*
+- **12th — The lossless fold test (II.17).** The ladder of terrains is one
+  reading at decreasing resolution, never new content: a fold is lossless —
+  it reduces resolution and never makes anything up, and from every altitude
+  a drill-down path reaches the material it folded. A fold that cannot be
+  drilled back down is a summary, and a summary is a surrogate (II.6).
+  Higher terrains are the reader's memory, held off-prompt; assembling a
+  reading never requires the whole corpus in one prompt, and a drill-down is
+  an address, never an answer. Enforced as `fabricates_at_altitude`,
+  required on every claim; `true` on an engine placement is refuted.
+  Companion case: `eoreader6/scripts/LOSS-LESS-LADDER.md` — the measured rungs
+  (entities → relations → kinds → tiers, drilled back down on pg84) and the
+  generating laws L1–L6 (lossless, measured-never-listed, arrow of time,
+  activation-not-aggregation, witness-as-prior-that-re-enters,
+  typed-gap-is-a-result).

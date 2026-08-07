@@ -30,6 +30,7 @@ const EVIDENCE_BOOLEANS = Object.freeze([
   "fold_overclaims_completeness",
   "drilldown_uses_keyword_trigger",
   "surprise_claim_undisambiguated",
+  "fabricates_at_altitude",
 ]);
 
 export function classify(evidence) {
@@ -194,6 +195,15 @@ export function classify(evidence) {
         placement,
         reasons: [
           "II.12 — the local test: this mechanism's correctness depends on compute this lineage does not own. The AI datacenter with infinite GPU compute does not exist; the boundary conditions of the invention are local compute and mainstream hardware. A measurement that presumes the datacenter is refused wherever it is the measurement; a null that does not run locally does not exist",
+        ],
+      };
+    }
+    if (evidence.fabricates_at_altitude) {
+      return {
+        verdict: VERDICTS.REFUTE,
+        placement,
+        reasons: [
+          "II.13 — the lossless fold test: this mechanism reduces resolution and makes something up. A fold is lossless — every altitude keeps a drill-down path back to the exact material it folded, and a fold that cannot be drilled back down is a summary, which is a surrogate (II.6). Content that exists at altitude and nowhere below it is a hallucination with a rank, refused wherever it is the measurement",
         ],
       };
     }
