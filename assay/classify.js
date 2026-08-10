@@ -30,6 +30,8 @@ const EVIDENCE_BOOLEANS = Object.freeze([
   "fold_overclaims_completeness",
   "drilldown_uses_keyword_trigger",
   "surprise_claim_undisambiguated",
+  "lens_overclaims_completeness",
+  "lens_cursor_undeclared",
 ]);
 
 export function classify(evidence) {
@@ -131,6 +133,24 @@ export function classify(evidence) {
         placement,
         reasons: [
           "II.16 — the surprise-disambiguation test: this mechanism reports a surprise/divergence signal without separating narrative novelty from mere genre-distinctiveness, and without disclosing the conflation. 'Surprising relative to a prior' is at least two claims; a consumer cannot tell them apart from one number",
+        ],
+      };
+    }
+    if (evidence.lens_overclaims_completeness) {
+      return {
+        verdict: VERDICTS.REFUTE,
+        placement,
+        reasons: [
+          "II.17 — the lens fidelity test: this mechanism presents a selected projection of the event log as though it exhausted the log. A lens is not refused for selecting — every lens selects, that is what makes it a reading (II.6) — but completeness is not a property selection gets to claim, the same overclaim II.14 already refuses for a fold, one layer downstream applied to a projection",
+        ],
+      };
+    }
+    if (evidence.lens_cursor_undeclared) {
+      return {
+        verdict: VERDICTS.REFUTE,
+        placement,
+        reasons: [
+          "II.17 — the lens fidelity test: this mechanism reads the event log without a declared cursor. 'As of this tick' and 'as of whenever this ran' are different claims, and a lens that only ever reads the latest state is an undeclared clock at the seam where a projection is built — III.2 already refuses the engine a clock; this names the same refusal for the read side",
         ],
       };
     }

@@ -224,6 +224,27 @@ one. Two named consequences:
   an uncheckable ground is no ground: a type error, not a hard problem (II.5,
   III.2).
 
+**II.17 The lens fidelity test.** *Does a projection over the event log
+disclose what it selects and discards, and is it addressed to a cursor it
+names?* A lens — a materialized reading of the log, one frame applied to one
+situation — is not refused for selecting; every lens selects, that is what
+makes it a reading rather than the log itself (II.6 already distinguishes a
+reading from a surrogate; a lens is a reading, and this article is its
+shape). What is refused is two specific overclaims, one layer downstream of
+the fold fidelity test (II.14) applied to projections instead of
+compression:
+
+- **A lens is not the whole state.** Presenting a selected view of the log
+  as though it exhausted the log is refused in every tier — the same defect
+  II.14 already names for a fold: completeness is not a property selection,
+  any more than compression, gets to claim.
+- **A cursor is named, never defaulted to now.** A lens that reads "the
+  log" with no declared position in it is an undeclared clock. III.2
+  already refuses the engine a clock; this names the same refusal at the
+  seam where a projection is built. "As of this tick" and "as of whenever
+  this happened to run" are different claims, and only the reader who
+  names the cursor gets to make the first one.
+
 ## Article III — The seams
 
 **III.1 Derive vs receive.** Model-tier knowledge is injected as priors,
@@ -357,13 +378,22 @@ the test.
   is refused, one layer downstream of II.9's arrival-vs-revision distinction.
   Enforced as `surprise_claim_undisambiguated`, required on every claim;
   `true` on an engine placement is refuted.
+- **12th — The lens fidelity test (II.17).** A lens over the event log is
+  not refused for selecting; every lens selects, that is what a reading is
+  (II.6). It is refused for presenting a selection as the whole state — the
+  same overclaim II.14 already refuses for a fold, one layer downstream
+  applied to a projection — and for reading without a named cursor, an
+  undeclared clock at the seam where a projection is built (III.2). Enforced
+  as `lens_overclaims_completeness` and `lens_cursor_undeclared`, both
+  required on every claim; `true` on either is refuted on an engine
+  placement.
 
 *The 10th amendment — the validation discipline test (II.15) — remains a
 draft proposal (`AMENDMENT-10-PROPOSAL.md`) and is not entered here. IV.1
 requires a changed failing test in the same change as the article; II.15's
 own proposal leaves its enforcement shape (a required evidence field vs. a
 conformance-only fixture requirement) an open choice for the human disposing
-it, so no such test yet exists. Numbering 8th, 9th, 11th above is not a
-renumbering to close the gap — the 10th amendment keeps its number until it
-is disposed, so its own eventual entry does not require renumbering
+it, so no such test yet exists. Numbering 8th, 9th, 11th, 12th above is not
+a renumbering to close the gap — the 10th amendment keeps its number until
+it is disposed, so its own eventual entry does not require renumbering
 anything that came after it.*
