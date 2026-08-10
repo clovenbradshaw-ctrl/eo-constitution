@@ -58,6 +58,8 @@ test("a claim that never names its giver is a wall, not a placement (II.2)", () 
       fold_overclaims_completeness: false,
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
+      lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "none",
       host_dependencies: [],
     },
@@ -83,6 +85,8 @@ test("an engine claim that owns a host dependency is refused on the seam (III.2)
     fold_overclaims_completeness: false,
     drilldown_uses_keyword_trigger: false,
     surprise_claim_undisambiguated: false,
+    lens_overclaims_completeness: false,
+    lens_cursor_undeclared: false,
     consumes_source: "direct",
     host_dependencies: ["randomness"],
   });
@@ -107,6 +111,8 @@ test("a growth-rule wait is not a placement (IV.3)", () => {
     fold_overclaims_completeness: false,
     drilldown_uses_keyword_trigger: false,
     surprise_claim_undisambiguated: false,
+    lens_overclaims_completeness: false,
+    lens_cursor_undeclared: false,
     consumes_source: "direct",
     host_dependencies: [],
     level_test: "unstable",
@@ -135,6 +141,8 @@ test("a one-off fix is refused by the convergence test, with no stray tail (II.7
       fold_overclaims_completeness: false,
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
+      lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "direct",
       host_dependencies: [],
     },
@@ -165,6 +173,8 @@ test("an engine claim that fixes nothing in particular passes the convergence te
       fold_overclaims_completeness: false,
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
+      lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "direct",
       host_dependencies: [],
       level_test: "above",
@@ -196,6 +206,8 @@ test("a surrogate for the source is refused by the book test in every tier (II.6
       fold_overclaims_completeness: false,
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
+      lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
         consumes_source: "surrogate",
         host_dependencies: [],
       },
@@ -226,6 +238,8 @@ test("the who-for of a document is a received prior that names the communicator 
       fold_overclaims_completeness: false,
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
+      lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "none",
       host_dependencies: [],
     },
@@ -261,6 +275,8 @@ test("a proposed_placement mismatch is refused with the deciding article cited (
       fold_overclaims_completeness: false,
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
+      lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "direct",
       host_dependencies: [],
     },
@@ -290,6 +306,8 @@ test("a mechanism that weights the present is refused by the difference test, in
       fold_overclaims_completeness: false,
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
+      lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "direct",
       host_dependencies: [],
       level_test: "above",
@@ -318,6 +336,8 @@ test("a mechanism that weights the present is refused by the difference test, in
       fold_overclaims_completeness: false,
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
+      lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "direct",
       host_dependencies: ["clock"],
     },
@@ -441,6 +461,8 @@ test("a measurement that presumes the AI datacenter is refused by the local test
       fold_overclaims_completeness: false,
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
+      lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "direct",
       level_test: "above",
     },
@@ -460,6 +482,8 @@ test("a measurement that presumes the AI datacenter is refused by the local test
       fold_overclaims_completeness: false,
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
+      lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "direct",
       level_test: "above",
     },
@@ -486,6 +510,8 @@ test("the host may call a model it does not own; the measurement never presumes 
       fold_overclaims_completeness: false,
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
+      lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "direct",
       host_dependencies: ["network"],
     },
@@ -501,6 +527,8 @@ test("the host may call a model it does not own; the measurement never presumes 
       fold_overclaims_completeness: false,
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
+      lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "direct",
       level_test: "above",
     },
@@ -619,10 +647,65 @@ test("a claim that omits the surprise-disambiguation posture is a type error, no
   assert.match(verdict.reasons.join("\n"), /surprise_claim_undisambiguated/);
 });
 
+test("a lens that presents a selected projection of the log as though it exhausted the log is refused (II.17)", () => {
+  const vetoed = check({
+    proposed_placement: "engine",
+    evidence: {
+      ...sampleEvidence(),
+      lens_overclaims_completeness: true,
+      consumes_source: "direct",
+      level_test: "above",
+    },
+  });
+  assert.equal(vetoed.verdict, VERDICTS.REFUTE);
+  assert.match(vetoed.reasons.join("\n"), /II\.17/);
+  assert.doesNotMatch(vetoed.reasons.join("\n"), /IV\.3/);
+});
+
+test("a lens that reads the log without a declared cursor is an undeclared clock (II.17)", () => {
+  const vetoed = check({
+    proposed_placement: "engine",
+    evidence: {
+      ...sampleEvidence(),
+      lens_cursor_undeclared: true,
+      consumes_source: "direct",
+      level_test: "above",
+    },
+  });
+  assert.equal(vetoed.verdict, VERDICTS.REFUTE);
+  assert.match(vetoed.reasons.join("\n"), /II\.17/);
+
+  const cursored = check({
+    proposed_placement: "engine",
+    evidence: {
+      ...sampleEvidence(),
+      lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
+      consumes_source: "direct",
+      level_test: "above",
+    },
+  });
+  assert.equal(cursored.verdict, VERDICTS.PASS, "a lens that discloses its selection and names its cursor passes II.17");
+});
+
+test("a claim that omits either lens-fidelity posture is a type error, not a pass (II.17/II.5)", () => {
+  const omittedCompleteness = { ...sampleEvidence() };
+  delete omittedCompleteness.lens_overclaims_completeness;
+  assert.equal(classify(omittedCompleteness).verdict, VERDICTS.GAP);
+  assert.match(classify(omittedCompleteness).reasons.join("\n"), /lens_overclaims_completeness/);
+
+  const omittedCursor = { ...sampleEvidence() };
+  delete omittedCursor.lens_cursor_undeclared;
+  assert.equal(classify(omittedCursor).verdict, VERDICTS.GAP);
+  assert.match(classify(omittedCursor).reasons.join("\n"), /lens_cursor_undeclared/);
+});
+
 function undisambiguatedSurprise() {
   return {
     ...sampleEvidence(),
     surprise_claim_undisambiguated: true,
+    lens_overclaims_completeness: false,
+    lens_cursor_undeclared: false,
     consumes_source: "direct",
     host_dependencies: [],
     level_test: "above",
@@ -646,6 +729,8 @@ function arrivalScorer() {
     fold_overclaims_completeness: false,
     drilldown_uses_keyword_trigger: false,
     surprise_claim_undisambiguated: false,
+    lens_overclaims_completeness: false,
+    lens_cursor_undeclared: false,
     consumes_source: "direct",
     host_dependencies: [],
     level_test: "above",
@@ -669,6 +754,8 @@ function sampleEvidence() {
     fold_overclaims_completeness: false,
     drilldown_uses_keyword_trigger: false,
     surprise_claim_undisambiguated: false,
+    lens_overclaims_completeness: false,
+    lens_cursor_undeclared: false,
     consumes_source: "none",
     host_dependencies: [],
   };
