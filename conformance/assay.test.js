@@ -59,6 +59,8 @@ test("a claim that never names its giver is a wall, not a placement (II.2)", () 
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
       fabricates_at_altitude: false,
+    lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "none",
       host_dependencies: [],
     },
@@ -85,6 +87,8 @@ test("an engine claim that owns a host dependency is refused on the seam (III.2)
     drilldown_uses_keyword_trigger: false,
     surprise_claim_undisambiguated: false,
     fabricates_at_altitude: false,
+    lens_overclaims_completeness: false,
+    lens_cursor_undeclared: false,
     consumes_source: "direct",
     host_dependencies: ["randomness"],
   });
@@ -110,6 +114,8 @@ test("a growth-rule wait is not a placement (IV.3)", () => {
     drilldown_uses_keyword_trigger: false,
     surprise_claim_undisambiguated: false,
     fabricates_at_altitude: false,
+    lens_overclaims_completeness: false,
+    lens_cursor_undeclared: false,
     consumes_source: "direct",
     host_dependencies: [],
     level_test: "unstable",
@@ -139,6 +145,8 @@ test("a one-off fix is refused by the convergence test, with no stray tail (II.7
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
       fabricates_at_altitude: false,
+    lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "direct",
       host_dependencies: [],
     },
@@ -170,6 +178,8 @@ test("an engine claim that fixes nothing in particular passes the convergence te
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
       fabricates_at_altitude: false,
+    lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "direct",
       host_dependencies: [],
       level_test: "above",
@@ -202,6 +212,8 @@ test("a surrogate for the source is refused by the book test in every tier (II.6
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
       fabricates_at_altitude: false,
+    lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
         consumes_source: "surrogate",
         host_dependencies: [],
       },
@@ -233,6 +245,8 @@ test("the who-for of a document is a received prior that names the communicator 
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
       fabricates_at_altitude: false,
+    lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "none",
       host_dependencies: [],
     },
@@ -269,6 +283,8 @@ test("a proposed_placement mismatch is refused with the deciding article cited (
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
       fabricates_at_altitude: false,
+    lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "direct",
       host_dependencies: [],
     },
@@ -299,6 +315,8 @@ test("a mechanism that weights the present is refused by the difference test, in
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
       fabricates_at_altitude: false,
+    lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "direct",
       host_dependencies: [],
       level_test: "above",
@@ -328,6 +346,8 @@ test("a mechanism that weights the present is refused by the difference test, in
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
       fabricates_at_altitude: false,
+    lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "direct",
       host_dependencies: ["clock"],
     },
@@ -452,6 +472,8 @@ test("a measurement that presumes the AI datacenter is refused by the local test
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
       fabricates_at_altitude: false,
+    lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "direct",
       level_test: "above",
     },
@@ -472,6 +494,8 @@ test("a measurement that presumes the AI datacenter is refused by the local test
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
       fabricates_at_altitude: false,
+    lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "direct",
       level_test: "above",
     },
@@ -499,6 +523,8 @@ test("the host may call a model it does not own; the measurement never presumes 
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
       fabricates_at_altitude: false,
+    lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "direct",
       host_dependencies: ["network"],
     },
@@ -515,6 +541,8 @@ test("the host may call a model it does not own; the measurement never presumes 
       drilldown_uses_keyword_trigger: false,
       surprise_claim_undisambiguated: false,
       fabricates_at_altitude: false,
+    lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
       consumes_source: "direct",
       level_test: "above",
     },
@@ -633,77 +661,58 @@ test("a claim that omits the surprise-disambiguation posture is a type error, no
   assert.match(verdict.reasons.join("\n"), /surprise_claim_undisambiguated/);
 });
 
-test("a convergent-inference etak claim with disjoint channels and a without-posit baseline routes to priors (II.19)", () => {
-  const verdict = check({
-    proposed_placement: "priors",
-    etak: canonicalEtak(),
-    evidence: etakEvidence(),
+test("a lens that presents a selected projection of the log as though it exhausted the log is refused (II.17)", () => {
+  const vetoed = check({
+    proposed_placement: "engine",
+    evidence: {
+      ...sampleEvidence(),
+      lens_overclaims_completeness: true,
+      consumes_source: "direct",
+      level_test: "above",
+    },
   });
-  assert.equal(verdict.verdict, VERDICTS.PASS);
-  assert.match(verdict.reasons.join("\n"), /II\.19/);
-  assert.equal(verdict.placement, "priors");
+  assert.equal(vetoed.verdict, VERDICTS.REFUTE);
+  assert.match(vetoed.reasons.join("\n"), /II\.17/);
+  assert.doesNotMatch(vetoed.reasons.join("\n"), /IV\.3/);
 });
 
-test("an etak claim with fewer than two channels is refused by the convergent-inference test (II.19)", () => {
-  const single = { ...canonicalEtak(), channels: [canonicalEtak().channels[0]] };
-  const verdict = check({ proposed_placement: "priors", etak: single, evidence: etakEvidence() });
-  assert.equal(verdict.verdict, VERDICTS.REFUTE);
-  assert.match(verdict.reasons.join("\n"), /II\.19/);
-  assert.match(verdict.reasons.join("\n"), /fewer than two channels/);
-});
-
-test("an etak claim whose channels share a derivation is refused by the convergent-inference test, even with two channels and a baseline (II.19)", () => {
-  const verdict = check({
-    proposed_placement: "priors",
-    etak: canonicalEtak(),
-    evidence: etakEvidence({ etak_derivation_shared: true }),
+test("a lens that reads the log without a declared cursor is an undeclared clock (II.17)", () => {
+  const vetoed = check({
+    proposed_placement: "engine",
+    evidence: {
+      ...sampleEvidence(),
+      lens_cursor_undeclared: true,
+      consumes_source: "direct",
+      level_test: "above",
+    },
   });
-  assert.equal(verdict.verdict, VERDICTS.REFUTE);
-  assert.match(verdict.reasons.join("\n"), /II\.19/);
-  assert.match(verdict.reasons.join("\n"), /independence/);
+  assert.equal(vetoed.verdict, VERDICTS.REFUTE);
+  assert.match(vetoed.reasons.join("\n"), /II\.17/);
+
+  const cursored = check({
+    proposed_placement: "engine",
+    evidence: {
+      ...sampleEvidence(),
+      fabricates_at_altitude: false,
+    lens_overclaims_completeness: false,
+      lens_cursor_undeclared: false,
+      consumes_source: "direct",
+      level_test: "above",
+    },
+  });
+  assert.equal(cursored.verdict, VERDICTS.PASS, "a lens that discloses its selection and names its cursor passes II.17");
 });
 
-test("an etak claim without a measured without-posit baseline is refused by the convergent-inference test (II.19)", () => {
-  const noBaseline = {
-    ...canonicalEtak(),
-    fit_improvement: { metric: "joint likelihood gain", with_posit: 0.94 },
-  };
-  const structural = check({ proposed_placement: "priors", etak: noBaseline, evidence: etakEvidence() });
-  assert.equal(structural.verdict, VERDICTS.REFUTE);
-  assert.match(structural.reasons.join("\n"), /baseline/);
+test("a claim that omits either lens-fidelity posture is a type error, not a pass (II.17/II.5)", () => {
+  const omittedCompleteness = { ...sampleEvidence() };
+  delete omittedCompleteness.lens_overclaims_completeness;
+  assert.equal(classify(omittedCompleteness).verdict, VERDICTS.GAP);
+  assert.match(classify(omittedCompleteness).reasons.join("\n"), /lens_overclaims_completeness/);
 
-  const declared = check({ proposed_placement: "priors", etak: canonicalEtak(), evidence: etakEvidence({ etak_fit_unbaselined: true }) });
-  assert.equal(declared.verdict, VERDICTS.REFUTE);
-  assert.match(declared.reasons.join("\n"), /II\.19/);
-  assert.match(declared.reasons.join("\n"), /baseline/);
-});
-
-test("an etak claim that omits the convergent-inference posture booleans is a type error, not a pass (II.19/II.5)", () => {
-  const omitted = etakEvidence();
-  delete omitted.etak_derivation_shared;
-  const verdict = classify(omitted, { etak: canonicalEtak() });
-  assert.equal(verdict.verdict, VERDICTS.GAP);
-  assert.match(verdict.reasons.join("\n"), /etak_derivation_shared/);
-});
-
-test("material knowledge with neither a giver nor an etak structure keeps the II.2 wall (II.19/II.2)", () => {
-  const verdict = check({ proposed_placement: "priors", evidence: etakEvidence() });
-  assert.equal(verdict.verdict, VERDICTS.REFUTE);
-  assert.match(verdict.reasons.join("\n"), /II\.2/);
-  assert.doesNotMatch(verdict.reasons.join("\n"), /II\.19/);
-});
-
-test("a claim that offers both a giver and channels routes as a star, not an etak (II.2)", () => {
-  const verdict = check({ proposed_placement: "priors", etak: canonicalEtak(), evidence: etakEvidence({ giver: "human reader (per-text coref prior)" }) });
-  assert.equal(verdict.verdict, VERDICTS.PASS);
-  assert.match(verdict.reasons.join("\n"), /II\.2/);
-  assert.doesNotMatch(verdict.reasons.join("\n"), /II\.19/);
-});
-
-test("a passing etak claim proposed for the engine is refused on the placement mismatch (II.19/IV.4)", () => {
-  const verdict = check({ proposed_placement: "engine", etak: canonicalEtak(), evidence: etakEvidence() });
-  assert.equal(verdict.verdict, VERDICTS.REFUTE);
-  assert.equal(verdict.classified_placement, "priors");
+  const omittedCursor = { ...sampleEvidence() };
+  delete omittedCursor.lens_cursor_undeclared;
+  assert.equal(classify(omittedCursor).verdict, VERDICTS.GAP);
+  assert.match(classify(omittedCursor).reasons.join("\n"), /lens_cursor_undeclared/);
 });
 
 function undisambiguatedSurprise() {
@@ -711,6 +720,8 @@ function undisambiguatedSurprise() {
     ...sampleEvidence(),
     surprise_claim_undisambiguated: true,
     fabricates_at_altitude: false,
+    lens_overclaims_completeness: false,
+    lens_cursor_undeclared: false,
     consumes_source: "direct",
     host_dependencies: [],
     level_test: "above",
@@ -735,6 +746,8 @@ function arrivalScorer() {
     drilldown_uses_keyword_trigger: false,
     surprise_claim_undisambiguated: false,
     fabricates_at_altitude: false,
+    lens_overclaims_completeness: false,
+    lens_cursor_undeclared: false,
     consumes_source: "direct",
     host_dependencies: [],
     level_test: "above",
@@ -759,10 +772,13 @@ function sampleEvidence() {
     drilldown_uses_keyword_trigger: false,
     surprise_claim_undisambiguated: false,
     fabricates_at_altitude: false,
+    lens_overclaims_completeness: false,
+    lens_cursor_undeclared: false,
     consumes_source: "none",
     host_dependencies: [],
   };
 }
+
 
 function etakEvidence(overrides) {
   return {
@@ -803,3 +819,76 @@ function canonicalEtak() {
     as_of: "2026-08-12",
   };
 }
+
+test("a convergent-inference etak claim with disjoint channels and a without-posit baseline routes to priors (II.22)", () => {
+  const verdict = check({
+    proposed_placement: "priors",
+    etak: canonicalEtak(),
+    evidence: etakEvidence(),
+  });
+  assert.equal(verdict.verdict, VERDICTS.PASS);
+  assert.match(verdict.reasons.join("\n"), /II\.22/);
+  assert.equal(verdict.placement, "priors");
+});
+
+test("an etak claim with fewer than two channels is refused by the convergent-inference test (II.22)", () => {
+  const single = { ...canonicalEtak(), channels: [canonicalEtak().channels[0]] };
+  const verdict = check({ proposed_placement: "priors", etak: single, evidence: etakEvidence() });
+  assert.equal(verdict.verdict, VERDICTS.REFUTE);
+  assert.match(verdict.reasons.join("\n"), /II\.22/);
+  assert.match(verdict.reasons.join("\n"), /fewer than two channels/);
+});
+
+test("an etak claim whose channels share a derivation is refused by the convergent-inference test, even with two channels and a baseline (II.22)", () => {
+  const verdict = check({
+    proposed_placement: "priors",
+    etak: canonicalEtak(),
+    evidence: etakEvidence({ etak_derivation_shared: true }),
+  });
+  assert.equal(verdict.verdict, VERDICTS.REFUTE);
+  assert.match(verdict.reasons.join("\n"), /II\.22/);
+  assert.match(verdict.reasons.join("\n"), /independence/);
+});
+
+test("an etak claim without a measured without-posit baseline is refused by the convergent-inference test (II.22)", () => {
+  const noBaseline = {
+    ...canonicalEtak(),
+    fit_improvement: { metric: "joint likelihood gain", with_posit: 0.94 },
+  };
+  const structural = check({ proposed_placement: "priors", etak: noBaseline, evidence: etakEvidence() });
+  assert.equal(structural.verdict, VERDICTS.REFUTE);
+  assert.match(structural.reasons.join("\n"), /baseline/);
+
+  const declared = check({ proposed_placement: "priors", etak: canonicalEtak(), evidence: etakEvidence({ etak_fit_unbaselined: true }) });
+  assert.equal(declared.verdict, VERDICTS.REFUTE);
+  assert.match(declared.reasons.join("\n"), /II\.22/);
+  assert.match(declared.reasons.join("\n"), /baseline/);
+});
+
+test("an etak claim that omits the convergent-inference posture booleans is a type error, not a pass (II.19/II.5)", () => {
+  const omitted = etakEvidence();
+  delete omitted.etak_derivation_shared;
+  const verdict = classify(omitted, { etak: canonicalEtak() });
+  assert.equal(verdict.verdict, VERDICTS.GAP);
+  assert.match(verdict.reasons.join("\n"), /etak_derivation_shared/);
+});
+
+test("material knowledge with neither a giver nor an etak structure keeps the II.2 wall (II.19/II.2)", () => {
+  const verdict = check({ proposed_placement: "priors", evidence: etakEvidence() });
+  assert.equal(verdict.verdict, VERDICTS.REFUTE);
+  assert.match(verdict.reasons.join("\n"), /II\.2/);
+  assert.doesNotMatch(verdict.reasons.join("\n"), /II\.22/);
+});
+
+test("a claim that offers both a giver and channels routes as a star, not an etak (II.2)", () => {
+  const verdict = check({ proposed_placement: "priors", etak: canonicalEtak(), evidence: etakEvidence({ giver: "human reader (per-text coref prior)" }) });
+  assert.equal(verdict.verdict, VERDICTS.PASS);
+  assert.match(verdict.reasons.join("\n"), /II\.2/);
+  assert.doesNotMatch(verdict.reasons.join("\n"), /II\.22/);
+});
+
+test("a passing etak claim proposed for the engine is refused on the placement mismatch (II.19/IV.4)", () => {
+  const verdict = check({ proposed_placement: "engine", etak: canonicalEtak(), evidence: etakEvidence() });
+  assert.equal(verdict.verdict, VERDICTS.REFUTE);
+  assert.equal(verdict.classified_placement, "priors");
+});

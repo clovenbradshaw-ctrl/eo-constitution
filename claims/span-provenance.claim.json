@@ -20,6 +20,8 @@
     "drilldown_uses_keyword_trigger": false,
     "surprise_claim_undisambiguated": false,
     "fabricates_at_altitude": false,
+    "lens_overclaims_completeness": false,
+    "lens_cursor_undeclared": false,
     "consumes_source": "direct",
     "host_dependencies": []
   }

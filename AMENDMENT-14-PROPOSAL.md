@@ -1,348 +1,200 @@
-# Proposed 14th amendment — the convergent-inference test (II.19)
+# Proposed 14th amendment — the ledger completeness test (II.19)
 
-**Status: APPLIED — entered as the 14th amendment (II.19).** IV.2 — the
+**Status: DRAFT PROPOSAL. Not applied, not yet human-reviewed.** IV.2 — the
 assay proposes and checks, it never amends; amendment is a human act. This
-document files the *etak-claim* spec, drafted against `eo-constitution` @
-`f830400`, with the numbering it originally used corrected to the live text:
-the spec's "provisionally II.17" is now the lossless fold test (12th
-amendment, entered at `e1649e3`), and II.18 is already claimed by the
-surf-before-fold test (13th amendment proposal). This is filed as the **14th
-amendment — II.19, the convergent-inference test** — plus a proposed
-`claims/*.claim.json` subtype for posited, unobserved reference nodes.
-
-The article is entered in `CONSTITUTION.md` (II.19 and amendment-log entry
-14th); the enforcement is entered in `assay/classify.js`; the exemplar is
-`claims/etak-claim.claim.json`; the conformance suite exercises the new
-routing in `conformance/assay.test.js`.
+document is an agent's drafting of a defect caught live, in a single working
+session, wiring `eoreader6`'s event_log/lens/reading substrate into
+`eoWebLLM`'s reading pipeline (`app/client/reading-pipeline.js`,
+`app/client/eo-binary/modifier-order-revision.js`,
+`app/client/eo-binary/event_log.js`) — not a conversion of a prior item from
+another document, same footing as Amendments 12 and 13.
 
 ---
 
-## The gap this closes
+## The defect
 
-The ledger currently has two kinds of thing:
+A reading pipeline was built around a real, append-only `event_log`
+(`createLog`/`tick`/`asOf`) and a projection layer (`lens.js`/`reading.js`)
+that reads it at a named cursor — II.17's own shape, correctly applied. The
+ledger itself, though, was not complete. Two omissions, found in the same
+session, both silent, both defended at write time by a plausible-sounding
+reason:
 
-- **Stars** — directly sighted, giver-named claims. `coref-descriptor`,
-  `embedding-bridge`. You can point at the giver and ask "how do you know."
-- **Birds** — giver-free structural signals. `terrain-stance-engine`,
-  `surfer-snip-host`. Real, useful, directional, but `is_material_knowledge:
-  false` — they never claim to denote anything.
+**First — a refused act left no trace in the ledger.** When a tagger found a
+modifier stack in an inverted order (e.g. real text reading "the black fat
+cat" — color before quality, backwards for English), `toEvents` correctly
+refused to mint a narrowing event for it. But the refusal itself was only
+ever collected into a transient, in-memory `refused` array returned
+alongside the reading — never ticked into `log`. Once the ledger, not the
+function's return value, became the thing persisted across a session
+(loaded back for a later re-read), a refusal that had genuinely happened —
+the system encountered this text, attempted to place it, and declined —
+became unrecoverable. Nothing in the log said it had ever occurred.
 
-Neither of these is the right shape for a specific, recurring case: a claim
-about something **nobody ever sighted**, whose existence and approximate
-position is inferred *because* two or more independently-derived signal
-channels only make joint sense if it's there. Not "a source told us." Not
-"a structural pattern." A posited node.
+**Second — an act that changed nothing was treated as no act at all.** When
+a source was re-read and a fresh tag agreed with what the ledger already
+held for the same node, the first implementation ticked nothing: the
+reasoning was that agreement is "perceived, and therefore not testimony" —
+an existing distinction this lineage already uses for a different purpose
+(`nul.js`'s `made_no_difference` gap, correctly refusing to count a
+non-finding as a *finding*). Applied to the ledger's own write path, the
+same reasoning produced a ledger that could not answer "was this node ever
+re-checked, and when" — every confirming check vanished the instant it
+happened, leaving only the single original tick, indistinguishable from a
+node nobody had ever looked at again.
 
-The canonical case is Neptune. Uranus's orbit didn't match prediction — that's
-a star, a direct observation with a residual. Le Verrier and Adams, working
-independently, calculated where an unseen mass had to sit to produce exactly
-that residual. Neither one *saw* Neptune. The planet's existence was
-established entirely by convergent effects across channels that didn't share
-a cause, months before Galle's telescope confirmed it. That's the shape of
-claim this spec is for: STR status from scraped signals that never directly
-observe a rental, "this entity = this entity" from behavioral traces that
-never directly observe an identity, "who this name denotes" from usage
-patterns that never directly observe a denotation.
-
-Etak, in the wayfinding sense that survives scrutiny (see below): the island
-isn't sighted this leg of the voyage, but its position is real, and multiple
-independent bearings — a star angle, a swell direction, a bird flight path —
-only cohere as readings *of the same thing* if it's where it's posited to be.
+Both omissions share one shape: a write path decided, at write time, that a
+given act was not worth recording — because it failed, or because it did
+not change anything — and every such decision is invisible from outside the
+mechanism. A caller holding only the ledger cannot tell "this never
+happened" from "this happened and was judged uninteresting." The fix in
+both cases was the same: tick a real event for the act (`SEG.refuse` for a
+refusal, `SEG.confirm` for an agreeing re-check, `SEG.revise` for a
+disagreeing one — the last following `eoreader6`'s own
+`emergence/voice.js::reviseVoice` precedent: *"not an edit — a later event
+that supersedes an earlier one, so the original claim and the correction
+both stay in the log and the change is auditable"*) and move the *filtering*
+of what matters to the projection layer, which already has a name for that
+job and already disciplines it (II.17).
 
 ## Why no existing article catches this
 
-- **II.2 (the giver test)** is the nearest article and names the wall, not
-  this case. A missing giver is "a wall, not a gap-in-waiting: report a typed
-  gap, never derive." That is the right verdict for a claim with no
-  provenance at all — and the wrong verdict for an etak claim, whose
-  provenance is real but convergent rather than sighted. II.2 has no
-  vocabulary to distinguish "no one knows" from "two disjoint processes
-  jointly imply." An etak claim currently lands in the II.2 wall and stops
-  there; this amendment gives that wall a second oracle to ask.
-- **II.8 (the difference test)** refuses cheap compatibility — "who a
-  surface denotes is a received prior (II.2), never a dot product, overlap,
-  or learned similarity over surfaces." That refuses the *entity-match*
-  etak built on a learned similarity. But it cannot tell a learned dot
-  product from a genuinely convergent, disjoint-channel inference, because
-  it has no independence vocabulary — the exact axis II.19 adds. The etak is
-  the case where "received, never derived" needs a third option: **converged
-  upon**.
-- **II.10 (the commensurability test)** disciplines a null against its own
-  observation — same spirit as this spec's `fit_improvement` requirement
-  (better *because of the posit*, not alongside it). But II.10 governs a
-  ground *within* a measurement; the etak's question is whether the posit,
-  as an entity, improves joint fit *across* channels that never observed it.
-  No single observation exists for II.10 to check the null against.
-- **II.6 (book)** and **II.17 (lossless fold)** guard against surrogates and
-  altitude content with no ground. An etak claim fabricated from a single
-  channel's echo — citogenesis — is exactly "content that exists at altitude
-  and nowhere below it." But it is a *priors* claim, not an engine fold, so
-  II.17 does not apply to its placement; the wire-copy check has to be a
-  precondition of the etak itself, not a downstream article.
-- **Nothing existing** asks the question this article asks directly: for a
-  material-knowledge claim with no sighting giver, are there two or more
-  channels with derivations that do not share a cause, and does the posit
-  actually improve joint fit against a without-posit baseline?
-
-## What an etak claim asserts
-
-An etak claim does **not** assert "the referent is X." It asserts:
-
-> Positing entity E at position/value P produces a strictly better joint fit
-> across channels {C1, C2, ...Cn} than any model that doesn't posit E — and
-> C1...Cn were derived by processes with no shared cause.
-
-This is weaker than a star (no giver directly sighted it) and stronger than
-a bird (it's not merely directional — it's a specific, falsifiable positing
-that either does or doesn't improve joint fit).
-
-## The independence test — load-bearing, do this first
-
-Before any fit-improvement math is meaningful, each channel must clear:
-
-- **Disjoint derivation.** No two channels may trace to the same training
-  corpus, the same upstream scrape, the same institutional source, or the
-  same prior claim in the ledger. If channel B is derived from channel A
-  (even indirectly — B was trained on a corpus that includes A's outputs),
-  B does not count as a second channel. This is the wire-copy/citogenesis
-  check from the fact-checking discussion, applied here as a precondition
-  rather than an afterthought.
-- **Disjoint failure mode.** Ideally the channels should be wrong in
-  different ways when wrong — a scrape artifact and a behavioral pattern
-  don't share a bug surface the way two scrapes of the same listing do.
-  Not required, but strengthens the claim; should be recorded when known.
-- **No shared correction.** If a human or upstream process has ever
-  "corrected" one channel using the other, they're no longer independent.
-
-A claim that skips this check and goes straight to "these three signals
-agree" is not an etak claim — it's the citogenesis failure with better
-vocabulary attached. Independence must be argued and recorded, not assumed
-from disagreement-free convergence.
+- **II.17 (the lens fidelity test)** is the nearest sibling and the
+  necessary complement, not a substitute. II.17 governs the READ side: a
+  projection over the log must disclose what it selects and discards, and
+  must name its cursor. This defect is upstream of that — it is about what
+  enters the log in the first place, before any lens runs. A lens can
+  honestly report every type it discarded (`readLens`'s own
+  `discardedTypes`, which is precisely how `SEG.refuse`/`SEG.confirm` now
+  surface to a caller reading through a narrower lens) and still be reading
+  a log that never received the event in the first place — II.17's
+  discipline is powerless against an omission that happened before the log
+  existed to be read.
+- **II.9 (the revision test)** is close by name — "revision" is in both
+  titles — but governs a different question: whether a mechanism scoring
+  *significance* conflates mere arrival with witnessed change, for the
+  purpose of deciding what counts as a finding. This article is not about
+  scoring significance; it is about whether an act gets committed to the
+  record AT ALL, before any significance judgment is made about it. II.9's
+  own "a cheap sense organ nominates, it never decides" is the adjacent
+  right instinct applied to a different consumer — a nomination-vs-verdict
+  split for measurement, not a record-vs-omit split for a ledger's write
+  path.
+- **II.8 (the difference test)**'s "no averaging of grounds... a
+  re-projection belongs to the reader" is the nearest structural cousin —
+  both refuse a mechanism collapsing information *before* handing it
+  onward, reserving that collapse for the reader/projection instead. II.8
+  names this for the engine's own measurement (never attend, never
+  average); this article names the same principle for what a ledger keeps
+  versus what it silently drops before the projection layer II.17 already
+  governs ever gets a chance to select from it.
+- **Nothing existing** asks the question this article asks directly: when
+  a mechanism's own record of what it did is itself a selection — an act
+  ticked only if it succeeded, or only if it changed something — is that
+  selection disclosed and separated from the ledger (as a later projection,
+  II.17-shaped), or is it silently baked into the ledger's own write path,
+  where no downstream reader, however careful, can recover what never
+  arrived.
 
 ## Proposed article
 
-> **II.19 The convergent-inference test.** *Is this knowledge sighted, or is
-> it converged upon — and if converged upon, are the channels actually
-> disjoint, and does the posit actually improve the fit?*
+> **II.19 The ledger completeness test.** *Does every act a mechanism takes
+> get committed to its own record, or only the acts judged interesting —
+> successful, or change-making — at write time?*
 >
-> A claim about the material — who a name denotes, that two words name one
-> thing, that a property holds — must name its giver (II.2), unless it names
-> no giver because none sighted it and instead supplies a different
-> provenance: two or more channels, derived by processes with no shared
-> cause, whose joint reading only makes sense if the posited entity is where
-> it is posited. A claim routed this way does not assert "the referent is
-> X"; it asserts that positing E improves joint fit across disjoint channels
-> better than any model that doesn't posit E. Two named consequences:
+> A ledger is not refused for being read through a lens that selects; II.17
+> already settles that a projection selects and must disclose it. This
+> article governs the seam before any lens runs: the ledger itself, at the
+> moment an act is written. Three consequences:
 >
-> - **Independence is the provenance, and it is argued, not assumed.** No
->   two channels may trace to the same corpus, upstream scrape,
->   institutional source, prior claim, or correction history; a channel
->   derived from another channel does not count as a second channel. A
->   claim that offers agreement without disjointness is citogenesis with a
->   rank, not convergence.
-> - **The fit is measured against a without-posit baseline, or it is not
->   measured at all.** A claim must show the joint fit is better *because of
->   the posit* — a with-posit value and a without-posit value for the same
->   metric — not merely that the posit is present alongside good numbers
->   (II.10's discipline, applied across channels instead of within a
->   measurement).
-
-A claim fails II.19 if:
-
-- fewer than 2 channels are offered, or
-- the independence_basis is missing or doesn't survive inspection (shared
-  corpus, shared upstream, shared correction history), or
-- fit_improvement isn't actually measured against a without-posit baseline
-  (this is the same discipline as II.10's null-differs-in-exactly-one-axis —
-  you have to show the fit is better *because of the posit*, not just that
-  the posit is present alongside good numbers).
+> - **Refusal is not silence.** A mechanism that examines material and
+>   declines to place it has taken a real act — the declining — and that
+>   act belongs in the record with the same standing as a successful
+>   placement, not folded into a side channel a caller must remember to
+>   also consult and that a persisted ledger will not carry forward.
+> - **Confirmation is not silence.** A re-check that agrees with the
+>   ledger's own prior record is still a witnessed act — proof the record
+>   was re-examined and held — and a ledger that only ever grows on
+>   disagreement cannot distinguish "never re-checked" from "re-checked and
+>   confirmed." Filtering a confirmation OUT of what a reader sees is
+>   II.17's job, done at the projection, never the ledger's own job, done by
+>   omission at the write.
+> - **Never an edit, always an append.** A later act that disagrees with
+>   what the ledger already holds for the same subject does not overwrite
+>   the prior entry — it appends a new entry that names what it supersedes,
+>   so both the original claim and the correction stay in the record and
+>   the disagreement itself is auditable, per the precedent this lineage
+>   already sets in `emergence/voice.js::reviseVoice`.
+>
+> The projection layer (II.17) is where "what does this ledger currently
+> say" gets computed — by folding the append-only trail to its latest state
+> per subject. That fold is a reading's job, done at the seam II.17 already
+> disciplines, never the ledger's own job, done silently at the point of
+> writing.
 
 ## Proposed enforcement
 
-II.19 is a routing precondition on the priors tier, in the same family as
-II.2's wall: material knowledge must arrive either with a sighting giver
-(II.2) or with a passing convergent-inference case (II.19). Where today a
-missing giver is an unconditional `GAP`, the amendment makes the missing
-giver **checkable**: the claim names its channels instead, and the assay
-applies II.19 before deciding the wall holds.
+Closer to II.17's shape than II.14's: a required boolean on any claim whose
+mechanism maintains an append-only record (an event log, a session trail, an
+audit history) as part of its own state.
 
-Three defect-named booleans, in the house style (`true` is the veto):
+`ledger_omits_uneventful_acts: boolean` — `true` means the mechanism's
+write path decides, per-act, whether to commit an act to the record based on
+whether it succeeded or changed something, rather than committing every act
+and leaving significance filtering to a later, disclosed projection. `true`
+on such a claim is refused in every tier.
 
-- `etak_channels_insufficient` — fewer than 2 channels offered. `true` is
-  refused in every tier.
-- `etak_derivation_shared` — the independence_basis is missing or does not
-  survive inspection: any two channels trace to the same corpus, upstream
-  source, prior claim, or correction history. `true` is refused in every
-  tier.
-- `etak_fit_unbaselined` — fit_improvement lacks a measured without-posit
-  baseline (only `with_posit`, or a claimed-but-unmeasured improvement).
-  `true` is refused in every tier.
-
-Required on every claim that asserts material knowledge without a sighting
-giver — i.e., on every `etak_claim`. Routing change to `assay/classify.js`:
-for `is_material_knowledge: true, giver: ""`, instead of returning the II.2
-gap immediately, first run II.19 on the claim's etak structure; a passing
-case routes to priors, a failing case is refused citing II.19, and a claim
-with neither giver nor etak structure keeps today's II.2 wall. A claim that
-offers both a giver and channels routes as a star (II.2); a confirmed etak
-keeps its type with a `confirmation_event` and is never silently reclassified
-as a star.
-
-## Proposed ledger schema
-
-An etak claim is a `claims/*.claim.json` like any other — `claim_id`,
-`what`, `proposed_placement`, `expect`, `evidence` — carrying a `etak`
-block that implements the subtype:
-
-```json
-{
-  "claim_id": "slug",
-  "what": "human description",
-  "proposed_placement": "priors",
-  "expect": "pass | refute",
-  "etak": {
-    "posited_entity": "<what is being posited to exist — an identity, a status, a denotation>",
-    "channels": [
-      {
-        "giver": "<named source/process>",
-        "signal": "<what this channel actually observed>",
-        "derivation": "<how this channel was produced>",
-        "independence_basis": "<why this channel's derivation is disjoint from the others'>"
-      }
-    ],
-    "predicted_effect": "<what the posited entity should produce in each channel if real>",
-    "fit_improvement": {
-      "metric": "<residual reduction / likelihood gain / whatever is measured>",
-      "with_posit": "<value>",
-      "without_posit": "<value — best model that doesn't posit the entity>"
-    },
-    "status": "provisional | confirmed | refuted",
-    "confirmation_event": "<if status is confirmed, what direct sighting (a star) resolved it — optional, many etak claims never get one>",
-    "as_of": "<evidence snapshot the posit is a bearing from, not a frozen verdict — see the wayfinding frame below>"
-  },
-  "evidence": { "...": "the standard routing evidence" }
-}
-```
-
-The `posited_entity` is a *relation* to the current evidence state — an
-entity-match claim, a status-at-this-moment claim — carried with an explicit
-`as_of` snapshot, never a single frozen verdict. Dead reckoning (see below)
-is the natural name for the running state between channel updates.
+`ledger_edits_in_place: boolean` — `true` means a later act that disagrees
+with an existing entry mutates or removes that entry instead of appending a
+new one that names what it supersedes. `true` on such a claim is refused in
+every tier.
 
 ## Proposed amendment-log entry (IV.6)
 
-> - **14th — The convergent-inference test (II.19).** Material knowledge
->   without a sighting giver is not automatically a wall: if the claim names
->   two or more channels whose derivations have no shared cause, and shows
->   the posited entity improves joint fit against a without-posit baseline,
->   it is a real prior established by inference — an etak claim — and routes
->   to priors with a different oracle than II.2's. Independence is argued,
->   never assumed from agreement (a channel derived from another channel is
->   not a second channel; shared corpus, upstream, or correction history is
->   citogenesis, not convergence), and the fit must be measured because of
->   the posit, not alongside it. Enforced as `etak_channels_insufficient`,
->   `etak_derivation_shared`, and `etak_fit_unbaselined`; `true` on any is
->   refused in every tier.
+> - **14th — The ledger completeness test (II.19).** A ledger is not
+>   refused for being read through a selecting lens — II.17 already settles
+>   that — but is refused for silently deciding, at the point of writing,
+>   that a refused or unchanged act is not worth recording. Refusal and
+>   confirmation are both witnessed acts and belong in the record with the
+>   same standing as a successful, change-making one; filtering what
+>   matters is the projection layer's job (II.17), never the ledger's own,
+>   done by omission at write time. A later disagreeing act never edits a
+>   prior entry — it appends a new one naming what it supersedes
+>   (`emergence/voice.js::reviseVoice`'s precedent). Enforced as
+>   `ledger_omits_uneventful_acts` and `ledger_edits_in_place`, both
+>   required on every claim whose mechanism maintains an append-only
+>   record; `true` on either is refused in every tier.
 
 ## What it would have caught
 
-The canonical shape is Neptune: convergent calculation before any telescope.
-The live shapes this amendment names are the ones the ledger keeps
-mis-filing — STR status from scraped signals that never directly observe a
-rental; "this entity = this entity" from behavioral traces that never
-directly observe an identity; "who this name denotes" from usage patterns
-that never directly observe a denotation. Today each one either dies in the
-II.2 wall (giver absent, so "a gap, never derive" — the wrong verdict for a
-posit a second oracle could check) or sneaks through dressed as a star with a
-giver it does not actually have. The exemplar filed with this proposal
-(`claims/etak-claim.claim.json`) is the citogenesis shape: two channels
-offered, both tracing to the same upstream feed — a claim that fails II.19
-for the reason that matters, where II.2 could only say "no giver."
-
-## Why this isn't "standing" or "anchor" (recap, for the record)
-
-Two earlier candidate terms were considered and rejected for this specific
-field, for reasons worth keeping attached to the spec so they don't get
-re-proposed:
-
-- **Anchor** — too generic. Any fixed correction point for any INS,
-  regardless of how it was fixed. Doesn't distinguish a genuinely inferred
-  node from a landmark you happened to sight once and are now trusting.
-- **Standing** (giver-has-standing) — a *source-reliability* property, not
-  a claim shape. It answers "is this giver worth listening to," which is a
-  different question from "is this entity's existence actually implied by
-  convergent, independent effects." A giver can have impeccable standing
-  and still be a star (directly sighted), not an etak (inferred).
-- **The anthropological "etak" itself, for the giver-standing job** — this
-  was the sharpest miss. Real Carolinian etaks are culturally transmitted,
-  taught within one navigation school, trusted by consensus inside that
-  lineage rather than independently re-verified each voyage. That's
-  structurally the opposite of what this spec needs from the word. What's
-  being kept from "etak" is the *unobserved-but-real, established-by-
-  convergent-effects* shape — Neptune, not the cultural-transmission
-  mechanics of the actual Pacific navigation tradition. Worth being honest
-  that the borrowed word is doing selective work, not a full transplant.
-
-## What the broader wayfinding frame gives for free
-
-Once the etak is specifically the *inferred, unsighted, effects-only* node
-(not a giver-standing question), several other pieces of the navigation
-picture map onto the ledger without extra invention:
-
-- **Dead reckoning = the running prior.** Between fixes, a navigator keeps a
-  working estimate of position from speed/heading/time — not zero
-  information, not a confirmed fix either. This is exactly `status:
-  provisional` with a `fit_improvement` that's been getting better across
-  updates but hasn't crossed a confirmation threshold. The ledger already
-  has "versioned priors, no-averaging" machinery from the vendor-signal
-  work; dead reckoning is the natural name for a provisional etak claim's
-  running state between channel updates.
-
-- **The etak moves relative to the canoe, not in absolute space.** The
-  navigator doesn't track "island at coordinates X" — they track "bearing to
-  island from here, now," which changes every hour even though the island
-  hasn't moved. This maps onto why `posited_entity` should usually be
-  represented as a *relation* to the current evidence state (an entity-match
-  claim, a status-at-this-moment claim) rather than an absolute fact — the
-  STR status of a property isn't a fixed truth, it's a bearing that gets
-  re-taken as scrape data updates. This argues for storing etak claims with
-  an explicit "as-of" evidence snapshot, not a single frozen verdict.
-
-- **Multiple star paths, cross-checked in flight, is the independence
-  requirement, not a nice-to-have.** Real navigators don't trust one bearing
-  — they hold several star sightings across the night and notice when one
-  drifts from the pattern the others describe. This is direct precedent for
-  requiring ≥2 disjoint channels before any etak claim is even eligible,
-  and for treating a *lone* channel drifting from the rest as a signal to
-  re-check that channel, not to distrust the posit.
-
-- **Birds arriving before landfall answers the completion-recognition
-  problem for etak claims specifically.** A claim doesn't need to reach
-  `confirmed` to be useful — the *trend* in fit_improvement across successive
-  channel updates (residual shrinking, independent channels converging
-  faster than chance) is itself informative and arrives before any direct
-  sighting would. This is the same mechanism from the earlier task-generation
-  discussion (side-signals substituting for goal-verification), now given a
-  concrete metric: watch `fit_improvement` trend, not just its current value.
-
-- **A confirmed etak doesn't retroactively become a star.** Neptune, once
-  seen through Galle's telescope, became a star claim in its own right — but
-  the original inference that found it stays correctly typed as an etak
-  claim with a `confirmation_event`, not silently reclassified as if it had
-  been sighted all along. This matters for the ledger's audit trail: it
-  should always be possible to see that a now-confirmed fact was originally
-  established by inference, because that's the information a future,
-  similar-shaped claim needs to calibrate how much to trust convergent
-  inference in this domain going forward.
+`app/client/reading-pipeline.js`'s original `buildReading` would have
+needed to name, before shipping, that its write path ticked a `SEG.narrow`
+event only on a successful, order-stable stack — with a refused stack's
+existence surviving nowhere but a same-call-only return value — which is
+exactly the fact that was true, visible in the code, and undisclosed.
+`modifier-order-revision.js`'s first draft (`resolveAgainstLedger`'s
+`"noop"` branch, ticking nothing on agreement) would equally have needed to
+name that its write path silently dropped every confirming re-check. Naming
+either would not by itself have produced the fix, but a claim carrying
+`ledger_omits_uneventful_acts: true` being refused in every tier would have
+forced `SEG.refuse` and `SEG.confirm` into existence at write time, rather
+than leaving both to ship as a fully cursor-disciplined, fully II.17-honest
+projection layer sitting on top of a ledger that had already, silently,
+decided what was worth remembering.
 
 ## Open question, recorded rather than settled
 
-How much fit-improvement is enough to move a claim from `provisional` to
-`confirmed` without a direct sighting ever occurring? Real navigators do
-commit to landfall from dead reckoning plus converging bearings alone, no
-telescope required — Neptune's mathematical prediction was trusted (correctly)
-before Galle looked. But this threshold is exactly the kind of thing Draft
-Amendment 10 (validation discipline, II.15) warns is dangerous to set once
-and reuse — "the verifier is exactly as fallible as what it verifies." This
-spec deliberately leaves the confirmation threshold unset; it should be
-argued per-domain the way II.15 asks, not hard-coded here.
+II.19 as proposed applies to "a mechanism that maintains an append-only
+record" — but most organs in this lineage do not currently model their own
+history as an event log at all; they compute a result and return it,
+stateless, per II.4's own invariance shape. Does this article apply only to
+mechanisms that have already chosen to be ledger-shaped (as `event_log.js`
+is, by design, for exactly the reason a re-readable, revisable ledger was
+wanted here) — leaving stateless organs untouched — or does it imply that
+*any* organ whose output can meaningfully change between two calls over
+related input (a re-read, a re-measurement) OUGHT to be ledger-shaped in
+the first place, with statelessness itself becoming the thing that needs a
+disclosed exemption? The narrower reading is the one this proposal argues
+for directly; the broader reading is a live question this session's own
+work does not settle, the same way Amendment 12 recorded its own open
+question rather than closing it.

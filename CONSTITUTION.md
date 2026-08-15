@@ -227,7 +227,7 @@ one. Two named consequences:
   an uncheckable ground is no ground: a type error, not a hard problem (II.5,
   III.2).
 
-**II.17 The lossless fold test.** *Does this mechanism reduce resolution, or
+**II.21 The lossless fold test.** *Does this mechanism reduce resolution, or
 make something up?* The ladder of terrains is one reading at decreasing
 resolution, never new content. A fold reduces resolution and invents
 nothing: whatever any altitude asserts, a drill-down path reaches the
@@ -246,7 +246,7 @@ consequences:
   corpus to be restated in one place. A drill-down is an address, not an
   answer — the source is cited, never the fold.
 
-**II.19 The convergent-inference test.** *Is this knowledge sighted, or is it
+**II.22 The convergent-inference test.** *Is this knowledge sighted, or is it
 converged upon — and if converged upon, are the channels actually disjoint,
 and does the posit actually improve the fit?* Knowledge about the material —
 who a name denotes, that two words name one thing, that a property holds —
@@ -270,10 +270,30 @@ different oracle than the giver test. Two named consequences:
   discipline of II.10 applied across channels — not merely that the posit
   sits alongside good numbers.
 
-A claim fails II.19 when fewer than two channels are offered, when the
+A claim fails II.22 when fewer than two channels are offered, when the
 independence basis is missing or does not survive inspection (shared corpus,
 shared upstream, shared correction history), or when the fit is not measured
 against a without-posit baseline.
+**II.17 The lens fidelity test.** *Does a projection over the event log
+disclose what it selects and discards, and is it addressed to a cursor it
+names?* A lens — a materialized reading of the log, one frame applied to one
+situation — is not refused for selecting; every lens selects, that is what
+makes it a reading rather than the log itself (II.6 already distinguishes a
+reading from a surrogate; a lens is a reading, and this article is its
+shape). What is refused is two specific overclaims, one layer downstream of
+the fold fidelity test (II.14) applied to projections instead of
+compression:
+
+- **A lens is not the whole state.** Presenting a selected view of the log
+  as though it exhausted the log is refused in every tier — the same defect
+  II.14 already names for a fold: completeness is not a property selection,
+  any more than compression, gets to claim.
+- **A cursor is named, never defaulted to now.** A lens that reads "the
+  log" with no declared position in it is an undeclared clock. III.2
+  already refuses the engine a clock; this names the same refusal at the
+  seam where a projection is built. "As of this tick" and "as of whenever
+  this happened to run" are different claims, and only the reader who
+  names the cursor gets to make the first one.
 
 ## Article III — The seams
 
@@ -408,19 +428,16 @@ the test.
   is refused, one layer downstream of II.9's arrival-vs-revision distinction.
   Enforced as `surprise_claim_undisambiguated`, required on every claim;
   `true` on an engine placement is refuted.
-
-*The 10th amendment — the validation discipline test (II.15) — remains a
-draft proposal (`AMENDMENT-10-PROPOSAL.md`) and is not entered here. IV.1
-requires a changed failing test in the same change as the article; II.15's
-own proposal leaves its enforcement shape (a required evidence field vs. a
-conformance-only fixture requirement) an open choice for the human disposing
-it, so no such test yet exists. Numbering 8th, 9th, 11th above is not a
-renumbering to close the gap — the 10th amendment keeps its number until it
-is disposed, so its own eventual entry does not require renumbering
-anything that came after it. The 13th amendment — the surf-before-fold test
-(II.18) — likewise remains a draft proposal (`AMENDMENT-13-PROPOSAL.md`) and
-is not entered here; it too keeps its number until it is disposed.*
-- **12th — The lossless fold test (II.17).** The ladder of terrains is one
+- **12th — The lens fidelity test (II.17).** A lens over the event log is
+  not refused for selecting; every lens selects, that is what a reading is
+  (II.6). It is refused for presenting a selection as the whole state — the
+  same overclaim II.14 already refuses for a fold, one layer downstream
+  applied to a projection — and for reading without a named cursor, an
+  undeclared clock at the seam where a projection is built (III.2). Enforced
+  as `lens_overclaims_completeness` and `lens_cursor_undeclared`, both
+  required on every claim; `true` on either is refuted on an engine
+  placement.
+- **16th — The lossless fold test (II.21).** The ladder of terrains is one
   reading at decreasing resolution, never new content: a fold is lossless —
   it reduces resolution and never makes anything up, and from every altitude
   a drill-down path reaches the material it folded. A fold that cannot be
@@ -434,7 +451,7 @@ is not entered here; it too keeps its number until it is disposed.*
   generating laws L1–L6 (lossless, measured-never-listed, arrow of time,
   activation-not-aggregation, witness-as-prior-that-re-enters,
   typed-gap-is-a-result).
-- **14th — The convergent-inference test (II.19).** Material knowledge
+- **17th — The convergent-inference test (II.22).** Material knowledge
   without a sighting giver is not automatically a wall: a claim that names
   two or more channels whose derivations have no shared cause, and shows the
   posited entity improves joint fit against a without-posit baseline, is a
@@ -447,4 +464,15 @@ is not entered here; it too keeps its number until it is disposed.*
   `etak_derivation_shared`, and `etak_fit_unbaselined`, required on every
   etak claim; `true` on any is refused, and a passing etak must structurally
   supply the channels and the baseline, not merely declare them. Companion
-  spec: `AMENDMENT-14-PROPOSAL.md`; exemplar: `claims/etak-claim.claim.json`.
+  spec: `AMENDMENT-17-PROPOSAL.md`; exemplar: `claims/etak-claim.claim.json`.
+
+
+*The 10th amendment — the validation discipline test (II.15) — remains a
+draft proposal (`AMENDMENT-10-PROPOSAL.md`) and is not entered here. IV.1
+requires a changed failing test in the same change as the article; II.15's
+own proposal leaves its enforcement shape (a required evidence field vs. a
+conformance-only fixture requirement) an open choice for the human disposing
+it, so no such test yet exists. Numbering 8th, 9th, 11th, 12th above is not
+a renumbering to close the gap — the 10th amendment keeps its number until
+it is disposed, so its own eventual entry does not require renumbering
+anything that came after it.*

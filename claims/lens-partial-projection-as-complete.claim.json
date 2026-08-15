@@ -1,0 +1,29 @@
+{
+  "claim_id": "lens-partial-projection-as-complete",
+  "what": "a document-read projection over an append-only event log that selects one lens (e.g. referent identity) at a fixed cursor and presents its output as 'the state of the document', with no field or disclosure naming which event types the lens read and which it silently ignored, and no cursor argument distinguishing 'as read so far' from 'as of now'",
+  "proposed_placement": "engine",
+  "expect": "refute",
+  "notes": "Exemplar for the 12th amendment (II.17). A lens over projectReferents-shaped events (DEF.admit/CON.identity/SYN.merge/SEG.split) is a legitimate reading of one terrain of the log -- the defect is not that it selects, it is that a consumer reading only its output cannot tell 'this is everything the log says' from 'this is what one lens, over one slice, chose to surface', and cannot tell 'current' from 'as of a moment someone can name'. The same log read by a kind-lens or a modifier-scope lens would surface different, non-overlapping structure from the identical events; presenting any one lens's output unlabeled invites exactly the completeness overclaim II.14 already refuses for a fold.",
+  "evidence": {
+    "needs_name_or_surface": false,
+    "is_material_knowledge": false,
+    "giver": "",
+    "is_host_knowledge": false,
+    "medium_agnostic": true,
+    "asserted_agnosticism": false,
+    "is_one_off_fix": false,
+    "weights_present": false,
+    "scores_arrival_alone": false,
+    "unconditional_null": false,
+    "needs_datacenter_compute": false,
+    "undisclosed_script_scope": false,
+    "fold_overclaims_completeness": false,
+    "drilldown_uses_keyword_trigger": false,
+    "surprise_claim_undisambiguated": false,
+    "lens_overclaims_completeness": true,
+    "lens_cursor_undeclared": true,
+    "consumes_source": "direct",
+    "host_dependencies": [],
+    "level_test": "above"
+  }
+}
