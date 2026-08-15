@@ -30,11 +30,19 @@ claim schema (check):
       "scores_arrival_alone": bool,     // II.9 revision veto: scores the arrival, not the revision (engine claims)
       "needs_datacenter_compute": bool, // II.12 local veto: presumes the AI datacenter (engine claims)
       "fabricates_at_altitude": bool,   // II.17 lossless fold veto: altitude content with no drill-down (engine claims)
+      "etak_channels_insufficient": bool, // II.19 convergent-inference veto: fewer than two channels (etak claims)
+      "etak_derivation_shared": bool,     // II.19 convergent-inference veto: channels share corpus/upstream/correction (etak claims)
+      "etak_fit_unbaselined": bool,       // II.19 convergent-inference veto: no without-posit baseline (etak claims)
       "consumes_source": "direct|surrogate|none", // II.6 book test (surrogate refuted everywhere)
       "host_dependencies": [...],       // III.2 engine owns none
       "level_test": "above|peer|unstable" // IV.3 growth rule (engine organs)
     }
   }
+
+an etak claim — material knowledge with no sighting giver, routed by II.19 —
+carries the claim-level "etak" block alongside "evidence": posited_entity,
+channels[] (giver, signal, derivation, independence_basis), predicted_effect,
+fit_improvement (metric, with_posit, without_posit), status, as_of.
 `;
 
 function load(path) {

@@ -33,7 +33,13 @@ const EVIDENCE_BOOLEANS = Object.freeze([
   "fabricates_at_altitude",
 ]);
 
-export function classify(evidence) {
+const ETAK_BOOLEANS = Object.freeze([
+  "etak_channels_insufficient",
+  "etak_derivation_shared",
+  "etak_fit_unbaselined",
+]);
+
+export function classify(evidence, context) {
   const reasons = [];
 
   if (!evidence || typeof evidence !== "object") {
@@ -80,11 +86,53 @@ export function classify(evidence) {
       placement = "priors";
       reasons.push("II.2 — witness knowledge about the material belongs in priors and names its giver");
     } else {
-      return {
-        verdict: VERDICTS.GAP,
-        placement: null,
-        reasons: ["II.2 — material knowledge without a giver is a wall; report a typed gap, never derive (r ≈ 0.974)"],
-      };
+      const etak = context?.etak ?? evidence.etak;
+      if (!etak || typeof etak !== "object") {
+        return {
+          verdict: VERDICTS.GAP,
+          placement: null,
+          reasons: ["II.2 — material knowledge without a giver is a wall; report a typed gap, never derive (r ≈ 0.974)"],
+        };
+      }
+      for (const key of ETAK_BOOLEANS) {
+        if (typeof evidence[key] !== "boolean") {
+          return {
+            verdict: VERDICTS.GAP,
+            placement: null,
+            reasons: [`II.5 — evidence.${key} must be a boolean on an etak claim; type error before null`],
+          };
+        }
+      }
+      const violations = [];
+      if (evidence.etak_channels_insufficient) {
+        violations.push("fewer than two channels are offered");
+      }
+      if (evidence.etak_derivation_shared) {
+        violations.push("independence does not survive inspection — two channels trace to the same corpus, upstream, prior claim, or correction history");
+      }
+      if (evidence.etak_fit_unbaselined) {
+        violations.push("fit_improvement is not measured against a without-posit baseline");
+      }
+      const channels = Array.isArray(etak.channels) ? etak.channels : [];
+      if (channels.length < 2) {
+        violations.push("fewer than two channels are supplied");
+      }
+      if (!channels.every((c) => c && c.giver && c.signal && c.derivation && c.independence_basis)) {
+        violations.push("a channel is missing giver, signal, derivation, or independence_basis");
+      }
+      const fit = etak.fit_improvement;
+      if (!fit || typeof fit !== "object" || !fit.metric || fit.with_posit === undefined || fit.without_posit === undefined) {
+        violations.push("fit_improvement lacks a measured without-posit baseline (with_posit and without_posit for the same metric)");
+      }
+      if (violations.length > 0) {
+        return {
+          verdict: VERDICTS.REFUTE,
+          placement: null,
+          reasons: [`II.19 — the convergent-inference test: ${violations.join("; ")}`],
+        };
+      }
+      placement = "priors";
+      reasons.push("II.19 — convergent inference from disjoint channels against a without-posit baseline: an etak claim routes to priors without a sighting giver");
     }
   } else if (evidence.needs_name_or_surface) {
     return {
@@ -239,7 +287,7 @@ export function check(claim) {
       reasons: ["II.5 — a claim must carry evidence"],
     };
   }
-  const classified = classify(claim.evidence);
+  const classified = classify(claim.evidence, { etak: claim.etak });
 
   if (classified.verdict !== VERDICTS.PASS) {
     const tail =

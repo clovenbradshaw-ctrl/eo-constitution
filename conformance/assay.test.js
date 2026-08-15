@@ -633,6 +633,79 @@ test("a claim that omits the surprise-disambiguation posture is a type error, no
   assert.match(verdict.reasons.join("\n"), /surprise_claim_undisambiguated/);
 });
 
+test("a convergent-inference etak claim with disjoint channels and a without-posit baseline routes to priors (II.19)", () => {
+  const verdict = check({
+    proposed_placement: "priors",
+    etak: canonicalEtak(),
+    evidence: etakEvidence(),
+  });
+  assert.equal(verdict.verdict, VERDICTS.PASS);
+  assert.match(verdict.reasons.join("\n"), /II\.19/);
+  assert.equal(verdict.placement, "priors");
+});
+
+test("an etak claim with fewer than two channels is refused by the convergent-inference test (II.19)", () => {
+  const single = { ...canonicalEtak(), channels: [canonicalEtak().channels[0]] };
+  const verdict = check({ proposed_placement: "priors", etak: single, evidence: etakEvidence() });
+  assert.equal(verdict.verdict, VERDICTS.REFUTE);
+  assert.match(verdict.reasons.join("\n"), /II\.19/);
+  assert.match(verdict.reasons.join("\n"), /fewer than two channels/);
+});
+
+test("an etak claim whose channels share a derivation is refused by the convergent-inference test, even with two channels and a baseline (II.19)", () => {
+  const verdict = check({
+    proposed_placement: "priors",
+    etak: canonicalEtak(),
+    evidence: etakEvidence({ etak_derivation_shared: true }),
+  });
+  assert.equal(verdict.verdict, VERDICTS.REFUTE);
+  assert.match(verdict.reasons.join("\n"), /II\.19/);
+  assert.match(verdict.reasons.join("\n"), /independence/);
+});
+
+test("an etak claim without a measured without-posit baseline is refused by the convergent-inference test (II.19)", () => {
+  const noBaseline = {
+    ...canonicalEtak(),
+    fit_improvement: { metric: "joint likelihood gain", with_posit: 0.94 },
+  };
+  const structural = check({ proposed_placement: "priors", etak: noBaseline, evidence: etakEvidence() });
+  assert.equal(structural.verdict, VERDICTS.REFUTE);
+  assert.match(structural.reasons.join("\n"), /baseline/);
+
+  const declared = check({ proposed_placement: "priors", etak: canonicalEtak(), evidence: etakEvidence({ etak_fit_unbaselined: true }) });
+  assert.equal(declared.verdict, VERDICTS.REFUTE);
+  assert.match(declared.reasons.join("\n"), /II\.19/);
+  assert.match(declared.reasons.join("\n"), /baseline/);
+});
+
+test("an etak claim that omits the convergent-inference posture booleans is a type error, not a pass (II.19/II.5)", () => {
+  const omitted = etakEvidence();
+  delete omitted.etak_derivation_shared;
+  const verdict = classify(omitted, { etak: canonicalEtak() });
+  assert.equal(verdict.verdict, VERDICTS.GAP);
+  assert.match(verdict.reasons.join("\n"), /etak_derivation_shared/);
+});
+
+test("material knowledge with neither a giver nor an etak structure keeps the II.2 wall (II.19/II.2)", () => {
+  const verdict = check({ proposed_placement: "priors", evidence: etakEvidence() });
+  assert.equal(verdict.verdict, VERDICTS.REFUTE);
+  assert.match(verdict.reasons.join("\n"), /II\.2/);
+  assert.doesNotMatch(verdict.reasons.join("\n"), /II\.19/);
+});
+
+test("a claim that offers both a giver and channels routes as a star, not an etak (II.2)", () => {
+  const verdict = check({ proposed_placement: "priors", etak: canonicalEtak(), evidence: etakEvidence({ giver: "human reader (per-text coref prior)" }) });
+  assert.equal(verdict.verdict, VERDICTS.PASS);
+  assert.match(verdict.reasons.join("\n"), /II\.2/);
+  assert.doesNotMatch(verdict.reasons.join("\n"), /II\.19/);
+});
+
+test("a passing etak claim proposed for the engine is refused on the placement mismatch (II.19/IV.4)", () => {
+  const verdict = check({ proposed_placement: "engine", etak: canonicalEtak(), evidence: etakEvidence() });
+  assert.equal(verdict.verdict, VERDICTS.REFUTE);
+  assert.equal(verdict.classified_placement, "priors");
+});
+
 function undisambiguatedSurprise() {
   return {
     ...sampleEvidence(),
@@ -688,5 +761,45 @@ function sampleEvidence() {
     fabricates_at_altitude: false,
     consumes_source: "none",
     host_dependencies: [],
+  };
+}
+
+function etakEvidence(overrides) {
+  return {
+    ...sampleEvidence(),
+    is_material_knowledge: true,
+    giver: "",
+    etak_channels_insufficient: false,
+    etak_derivation_shared: false,
+    etak_fit_unbaselined: false,
+    ...overrides,
+  };
+}
+
+function canonicalEtak() {
+  return {
+    posited_entity: "STR availability status for property #48213",
+    channels: [
+      {
+        giver: "channel-A",
+        signal: "behavioral trace",
+        derivation: "trained on interaction logs",
+        independence_basis: "derived from behavioral logs; disjoint from channel-B's upstream",
+      },
+      {
+        giver: "channel-B",
+        signal: "scrape observation",
+        derivation: "scraped a separate booking feed",
+        independence_basis: "derived from a feed disjoint from channel-A's corpus",
+      },
+    ],
+    predicted_effect: "each channel should observe the status independently if the posit is real",
+    fit_improvement: {
+      metric: "joint likelihood gain",
+      with_posit: 0.94,
+      without_posit: 0.71,
+    },
+    status: "provisional",
+    as_of: "2026-08-12",
   };
 }

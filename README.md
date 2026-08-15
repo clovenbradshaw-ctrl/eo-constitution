@@ -79,6 +79,15 @@ refuted in every tier; `needs_datacenter_compute` is the 7th-amendment local
 veto (II.12) — true on an engine placement is refuted, the boundary binds the
 measurement, never the host that calls a model it does not own.
 
+An **etak claim** (14th amendment, II.19) is material knowledge established
+by convergent inference with no sighting giver: it carries the claim-level
+`etak` block (`posited_entity`, `channels[]` with `giver`/`signal`/
+`derivation`/`independence_basis`, `fit_improvement` with `with_posit`/
+`without_posit`, `status`, `as_of`) and the three posture booleans
+`etak_channels_insufficient`, `etak_derivation_shared`,
+`etak_fit_unbaselined`. Fewer than two disjoint channels, or a fit not
+measured against a without-posit baseline, is refused in every tier.
+
 ## The workflow, as we iterate
 
 1. Something new appears — an organ, an injection, a host feature.

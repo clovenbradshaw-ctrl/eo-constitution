@@ -246,6 +246,35 @@ consequences:
   corpus to be restated in one place. A drill-down is an address, not an
   answer — the source is cited, never the fold.
 
+**II.19 The convergent-inference test.** *Is this knowledge sighted, or is it
+converged upon — and if converged upon, are the channels actually disjoint,
+and does the posit actually improve the fit?* Knowledge about the material —
+who a name denotes, that two words name one thing, that a property holds —
+must name its giver (II.2); unless no giver exists because none sighted it,
+and the claim instead supplies a different provenance: two or more channels,
+derived by processes with no shared cause, whose joint reading only makes
+sense if the posited entity is where it is posited. Such a claim does not
+assert "the referent is X"; it asserts that positing E improves joint fit
+across disjoint channels better than any model that does not posit E — an
+etak claim, a real prior established by inference, and one checkable by a
+different oracle than the giver test. Two named consequences:
+
+- **Independence is the provenance, and it is argued, not assumed.** No two
+  channels may trace to the same corpus, upstream scrape, institutional
+  source, prior claim, or correction history; a channel derived from another
+  channel is not a second channel. Agreement without disjointness is
+  citogenesis with a rank, not convergence.
+- **The fit is measured against a without-posit baseline, or it is not
+  measured.** The joint fit must be better *because of* the posit — a
+  with-posit value and a without-posit value for the same metric, in the
+  discipline of II.10 applied across channels — not merely that the posit
+  sits alongside good numbers.
+
+A claim fails II.19 when fewer than two channels are offered, when the
+independence basis is missing or does not survive inspection (shared corpus,
+shared upstream, shared correction history), or when the fit is not measured
+against a without-posit baseline.
+
 ## Article III — The seams
 
 **III.1 Derive vs receive.** Model-tier knowledge is injected as priors,
@@ -388,7 +417,9 @@ conformance-only fixture requirement) an open choice for the human disposing
 it, so no such test yet exists. Numbering 8th, 9th, 11th above is not a
 renumbering to close the gap — the 10th amendment keeps its number until it
 is disposed, so its own eventual entry does not require renumbering
-anything that came after it.*
+anything that came after it. The 13th amendment — the surf-before-fold test
+(II.18) — likewise remains a draft proposal (`AMENDMENT-13-PROPOSAL.md`) and
+is not entered here; it too keeps its number until it is disposed.*
 - **12th — The lossless fold test (II.17).** The ladder of terrains is one
   reading at decreasing resolution, never new content: a fold is lossless —
   it reduces resolution and never makes anything up, and from every altitude
@@ -403,3 +434,17 @@ anything that came after it.*
   generating laws L1–L6 (lossless, measured-never-listed, arrow of time,
   activation-not-aggregation, witness-as-prior-that-re-enters,
   typed-gap-is-a-result).
+- **14th — The convergent-inference test (II.19).** Material knowledge
+  without a sighting giver is not automatically a wall: a claim that names
+  two or more channels whose derivations have no shared cause, and shows the
+  posited entity improves joint fit against a without-posit baseline, is a
+  real prior established by inference — an etak claim — and routes to priors
+  by a different oracle than II.2's. Independence is argued, never assumed
+  from agreement (a channel derived from another channel is not a second
+  channel; shared corpus, upstream, or correction history is citogenesis,
+  not convergence), and the fit must be better *because of* the posit, not
+  alongside it. Enforced as `etak_channels_insufficient`,
+  `etak_derivation_shared`, and `etak_fit_unbaselined`, required on every
+  etak claim; `true` on any is refused, and a passing etak must structurally
+  supply the channels and the baseline, not merely declare them. Companion
+  spec: `AMENDMENT-14-PROPOSAL.md`; exemplar: `claims/etak-claim.claim.json`.
