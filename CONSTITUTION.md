@@ -188,6 +188,36 @@ named consequences:
   direction are carried on the ground and refused when they disagree (II.5,
   type error before null) — never left to a reviewer to notice.
 
+**II.23 The resolution test.** *Can this statistic tell the two answers
+apart?* II.10 governs the **null**: that it differ from the observation in
+exactly one axis. This governs the **statistic**: that it actually move when
+that axis moves. The two fail independently, and a perfectly commensurable
+null carried by a statistic which cannot resolve the question fails exactly
+the way an unconditional null does — a real ground, a real rank, a real spec,
+and no trace that nothing was measured.
+
+A statistic earns its use by a **control that must fail and does**. Not a
+second confirming case: a case constructed so that passing it would be wrong.
+A run that reports only successes has not demonstrated resolution, because a
+statistic which returns "significant" for every input returns it for the true
+ones too. Three named consequences:
+
+- **Report the null's own spread, never only the verdict.** A null whose
+  observed value sits outside a support that spans almost nothing has not
+  been beaten; it has been evaded. Median and extremum are carried on the
+  ground beside the rank.
+- **The perturbation must reach the thing in question.** A null that destroys
+  structure globally cannot answer a question about one member: adding a
+  single foreign element to a cohesive set moves a set-level statistic by
+  less than its own noise, so every candidate passes. Scope the perturbation
+  to the grain of the claim — a claim about membership is perturbed at the
+  member, not at the population.
+- **Direction is a finding, not an assumption.** Which side of the null the
+  evidence should fall on is derived from what the perturbation does, and
+  checked. A perturbation that makes its objects more alike inverts the
+  expected inequality; assuming the familiar direction reports the absence of
+  an effect as its presence.
+
 **II.11 The omnimodal earning test.** *Is medium-agnosticism measured, or
 declared?* The engine is what survives every text and every host (II.4), and
 that survival is earned by a test, never by an evidence boolean. A mechanism
@@ -496,6 +526,11 @@ the test.
   hand-maintained inventory either side could drift from. Companion doc:
   `AMENDMENT-18-PROPOSAL.md`; exemplar fix: `live_priors/scripts/eot-digest.mjs`;
   found engine defect: `claims/blank-furniture-sentence-drift.claim.json`.
+- **19th — The resolution test (II.23).** A null must be commensurable
+  (II.10) AND its statistic must resolve the question. Demonstrated by a
+  control constructed to fail; the null's own spread is reported beside the
+  rank; the perturbation is scoped to the grain of the claim; direction is
+  derived, never assumed.
 
 *The 10th amendment — the validation discipline test (II.15) — remains a
 draft proposal (`AMENDMENT-10-PROPOSAL.md`) and is not entered here. IV.1
