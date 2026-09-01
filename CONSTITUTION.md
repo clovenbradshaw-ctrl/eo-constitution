@@ -188,6 +188,36 @@ named consequences:
   direction are carried on the ground and refused when they disagree (II.5,
   type error before null) — never left to a reviewer to notice.
 
+**II.23 The resolution test.** *Can this statistic tell the two answers
+apart?* II.10 governs the **null**: that it differ from the observation in
+exactly one axis. This governs the **statistic**: that it actually move when
+that axis moves. The two fail independently, and a perfectly commensurable
+null carried by a statistic which cannot resolve the question fails exactly
+the way an unconditional null does — a real ground, a real rank, a real spec,
+and no trace that nothing was measured.
+
+A statistic earns its use by a **control that must fail and does**. Not a
+second confirming case: a case constructed so that passing it would be wrong.
+A run that reports only successes has not demonstrated resolution, because a
+statistic which returns "significant" for every input returns it for the true
+ones too. Three named consequences:
+
+- **Report the null's own spread, never only the verdict.** A null whose
+  observed value sits outside a support that spans almost nothing has not
+  been beaten; it has been evaded. Median and extremum are carried on the
+  ground beside the rank.
+- **The perturbation must reach the thing in question.** A null that destroys
+  structure globally cannot answer a question about one member: adding a
+  single foreign element to a cohesive set moves a set-level statistic by
+  less than its own noise, so every candidate passes. Scope the perturbation
+  to the grain of the claim — a claim about membership is perturbed at the
+  member, not at the population.
+- **Direction is a finding, not an assumption.** Which side of the null the
+  evidence should fall on is derived from what the perturbation does, and
+  checked. A perturbation that makes its objects more alike inverts the
+  expected inequality; assuming the familiar direction reports the absence of
+  an effect as its presence.
+
 **II.11 The omnimodal earning test.** *Is medium-agnosticism measured, or
 declared?* The engine is what survives every text and every host (II.4), and
 that survival is earned by a test, never by an evidence boolean. A mechanism
@@ -308,6 +338,43 @@ none. A reaction is an observation of a reader, not an inference — it never
 carries an operator, a prior id, or an epoch.
 
 **III.3 A missing prior is a typed gap, never a silently wrong number.**
+
+**III.4 A composition names every organ its consumer offers, or it names
+nothing honestly.** (18th amendment, 2026-09-01.) III.1-III.3 govern
+VALUES a member injects or withholds; this governs ORGANS a member's own
+composition wires or leaves silent. Found by measurement: live_priors'
+corpus recipe passed eleven of the twenty-five organs its consumer accepts,
+declaring none of the other fourteen omitted — no article above was broken
+by any single member, and the composition degraded across 2,208 readings
+regardless. A composition must, for every organ its consumer's own
+destructuring accepts, either pass it or name it in a declared omissions
+list carrying a real reason. An omission with a reason is compliant; an
+omission with no record is the infringement this article exists to end.
+The Union does not decide what a member injects — only that the silence
+about it does not stand. Enforced by `conformance/composition.test.mjs`,
+which derives the accepted set from the consumer's own source and the
+passed/declared sets from the composition's own source, never from a
+maintained list either could drift from.
+
+**III.5 A gate that can run dark asserts its ground where the ground is
+committed.** Found live, in the repo that had just documented the class: a
+grammar gate carried an honest degraded-mode flag (`posPriorLoaded: false`),
+the flag was true-and-read-by-nobody for the gate's whole life, and the cause
+was one wrong word in a filename. III.3 makes a missing prior a typed gap;
+this article closes the remaining hole: **a typed gap that no test reads is a
+report, not an enforcement.** Every organ that degrades when external ground
+fails to load must have a conformance assertion, in the checkout where that
+ground is committed, that the gate is LIT — and that it does its one job,
+because "loaded" and "working" are different claims. Two named consequences:
+
+- **Prose may not claim wiring.** "X is wired" and "X has no caller" are
+  derived claims; both directions of that error were found in one session's
+  documentation. Where wiring matters, a test derives it from source (III.4's
+  own shape), and the document points at the test.
+- **A dark gate degrades loudly at composition time.** A consumer handed
+  `null` where an organ was promised cannot tell refusal from absence;
+  `typeof null` is "object" and passes truthy-shape checks. The composition
+  reports which of its gates are lit as data, and the assay reads it.
 
 ## Article IV — Amendment
 
@@ -466,6 +533,28 @@ the test.
   supply the channels and the baseline, not merely declare them. Companion
   spec: `AMENDMENT-17-PROPOSAL.md`; exemplar: `claims/etak-claim.claim.json`.
 
+
+
+- **18th — The composition test (III.4).** A composition must name every
+  organ its consumer's own destructuring accepts — pass it, or declare it
+  omitted with a real reason. Found live: `live_priors/scripts/eot-digest.mjs`
+  passed eleven of twenty-five organs `hypergraph.js::makeRelationReader`
+  accepts, silently, across 2,208 stored readings. No single member's
+  article was violated; the composition itself was unaudited. Enforced as
+  `conformance/composition.test.mjs`'s derived accepted/passed/declared
+  sets, one registered seam per row in its own `SEAMS` list — never a
+  hand-maintained inventory either side could drift from. Companion doc:
+  `AMENDMENT-18-PROPOSAL.md`; exemplar fix: `live_priors/scripts/eot-digest.mjs`;
+  found engine defect: `claims/blank-furniture-sentence-drift.claim.json`.
+- **19th — The resolution test (II.23).** A null must be commensurable
+  (II.10) AND its statistic must resolve the question. Demonstrated by a
+  control constructed to fail; the null's own spread is reported beside the
+  rank; the perturbation is scoped to the grain of the claim; direction is
+  derived, never assumed.
+- **20th — The dark-gate rule (III.5).** A typed gap no test reads is a
+  report, not an enforcement. A gate that can run dark is asserted lit — and
+  working — where its ground is committed; prose never claims wiring, tests
+  derive it.
 
 *The 10th amendment — the validation discipline test (II.15) — remains a
 draft proposal (`AMENDMENT-10-PROPOSAL.md`) and is not entered here. IV.1
