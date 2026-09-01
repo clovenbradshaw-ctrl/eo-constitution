@@ -5,7 +5,9 @@
   "description": "The amendable constitution and routing assay for the EOReader lineage",
   "type": "module",
   "scripts": {
-    "test": "node --test conformance/assay.test.js",
-    "route": "node assay/route.mjs"
+    "test": "node --test",
+    "route": "node assay/route.mjs",
+    "test:assay": "node --test conformance/assay.test.js",
+    "test:composition": "node --test conformance/composition.test.mjs"
   }
 }

@@ -309,6 +309,23 @@ carries an operator, a prior id, or an epoch.
 
 **III.3 A missing prior is a typed gap, never a silently wrong number.**
 
+**III.4 A composition names every organ its consumer offers, or it names
+nothing honestly.** (18th amendment, 2026-09-01.) III.1-III.3 govern
+VALUES a member injects or withholds; this governs ORGANS a member's own
+composition wires or leaves silent. Found by measurement: live_priors'
+corpus recipe passed eleven of the twenty-five organs its consumer accepts,
+declaring none of the other fourteen omitted — no article above was broken
+by any single member, and the composition degraded across 2,208 readings
+regardless. A composition must, for every organ its consumer's own
+destructuring accepts, either pass it or name it in a declared omissions
+list carrying a real reason. An omission with a reason is compliant; an
+omission with no record is the infringement this article exists to end.
+The Union does not decide what a member injects — only that the silence
+about it does not stand. Enforced by `conformance/composition.test.mjs`,
+which derives the accepted set from the consumer's own source and the
+passed/declared sets from the composition's own source, never from a
+maintained list either could drift from.
+
 ## Article IV — Amendment
 
 **IV.1 The constitution is amendable.** An amendment is a versioned change
@@ -466,6 +483,19 @@ the test.
   supply the channels and the baseline, not merely declare them. Companion
   spec: `AMENDMENT-17-PROPOSAL.md`; exemplar: `claims/etak-claim.claim.json`.
 
+
+
+- **18th — The composition test (III.4).** A composition must name every
+  organ its consumer's own destructuring accepts — pass it, or declare it
+  omitted with a real reason. Found live: `live_priors/scripts/eot-digest.mjs`
+  passed eleven of twenty-five organs `hypergraph.js::makeRelationReader`
+  accepts, silently, across 2,208 stored readings. No single member's
+  article was violated; the composition itself was unaudited. Enforced as
+  `conformance/composition.test.mjs`'s derived accepted/passed/declared
+  sets, one registered seam per row in its own `SEAMS` list — never a
+  hand-maintained inventory either side could drift from. Companion doc:
+  `AMENDMENT-18-PROPOSAL.md`; exemplar fix: `live_priors/scripts/eot-digest.mjs`;
+  found engine defect: `claims/blank-furniture-sentence-drift.claim.json`.
 
 *The 10th amendment — the validation discipline test (II.15) — remains a
 draft proposal (`AMENDMENT-10-PROPOSAL.md`) and is not entered here. IV.1

@@ -1,0 +1,75 @@
+{
+  "schema": "AmendmentSeals@1",
+  "sealed": {
+    "1": {
+      "hash": "0beeec18deec84c51f0e265721568f28c79a60d829d9bceb53dd1e32c2666fbf",
+      "sealedAt": null,
+      "chars": 303
+    },
+    "2": {
+      "hash": "c9c86073e323177c9ef37c7c75430bf0ba737f09fd815d1de4cfa7c27e30b3ca",
+      "sealedAt": null,
+      "chars": 280
+    },
+    "3": {
+      "hash": "a717c0f9e6f8726ec1768c23bb73f08702adaae4147d183e87b351fc9c10281e",
+      "sealedAt": null,
+      "chars": 871
+    },
+    "4": {
+      "hash": "cf8cc6f9f2823fd3bb116dff3bcacc44813baed44cd8335dec4744869426c780",
+      "sealedAt": null,
+      "chars": 1010
+    },
+    "5": {
+      "hash": "14eac510df25b49a3ac398ce91aae12a145f45e26831de5991197f84ffb28b8a",
+      "sealedAt": null,
+      "chars": 814
+    },
+    "6": {
+      "hash": "146bf71353af843e27270e040a3bcbd1a3c1558df1b748b92682f43649ecbd65",
+      "sealedAt": null,
+      "chars": 687
+    },
+    "7": {
+      "hash": "68856e26ab802c19e31fb10bfe83ba59b37af34533b57e3bd6ad042f4ea536a3",
+      "sealedAt": null,
+      "chars": 869
+    },
+    "8": {
+      "hash": "6e09be6ca3019f254754f48766f7fe86479e2694633e73e4f7296ec535227d84",
+      "sealedAt": null,
+      "chars": 536
+    },
+    "9": {
+      "hash": "9bb9d68dcc290f82bf644aae8bfda0df6e6666e8842ef9a7007f45c7b1126dde",
+      "sealedAt": null,
+      "chars": 766
+    },
+    "11": {
+      "hash": "81f96a5238917349c6475b5c1feca535619e8f0d6342c2e330d9d6999f5ae1d4",
+      "sealedAt": null,
+      "chars": 555
+    },
+    "12": {
+      "hash": "4c5ac2f32712988d51acc20afe8b192be2633706eb074ec911d0c23e702cc4f5",
+      "sealedAt": null,
+      "chars": 596
+    },
+    "16": {
+      "hash": "fb8c61f576aaa4f9b9d3d40711e276ca82a822c248e3c8fe3eac9a46cabb532f",
+      "sealedAt": null,
+      "chars": 977
+    },
+    "17": {
+      "hash": "0a95092f2bb58a6b48b81f2e0a78d90d4505c352956286096cac90916f688dd4",
+      "sealedAt": null,
+      "chars": 1033
+    },
+    "18": {
+      "hash": "8259a6b6fb79a3a6794e1c18f5bb96272583485637d58fa4c91904abdf6b9bdb",
+      "sealedAt": null,
+      "chars": 815
+    }
+  }
+}

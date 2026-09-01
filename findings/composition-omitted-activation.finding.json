@@ -1,0 +1,33 @@
+{
+  "schema": "Finding@1",
+  "finding_id": "composition-omitted-activation",
+  "what": "REFUTED EXEMPLAR for III.4 (the composition test, entered as the 18th amendment): live_priors/scripts/eot-digest.mjs::loadOrgans built the-fold's hypergraph.js::makeRelationReader passing eleven of the twenty-five organs that function accepts, silently. resolvePronouns (eoreader7 kernel activation) was never imported at all, let alone passed. No article as it stood (I, II, III.1-III.3) was violated by any single member: eoreader7 offered the organ, the-fold accepted it as an optional parameter, live_priors simply never passed it. The composition degraded across all 2,208 stored corpus readings with nothing anywhere recording the omission.",
+  "measured_fix": {
+    "recipe_change": "live_priors/scripts/eot-digest.mjs \u2014 added import of eoreader7/native/adapters/text/pronouns.js; wired resolvePronouns + thirdPersonSingular into the makeRelationReader call; added UNION_OMITTED naming the fourteen organs left unwired, each with a real reason",
+    "corpus_sample": "Aristotle.txt, Dante_Alighieri.txt, Byzantine_Empire.txt, Confucianism.txt, Hamlet.txt (02-encyclopedic/wikipedia, 15-western-canon/folger-shakespeare)",
+    "before_after_edges": {
+      "Aristotle.txt": [
+        38,
+        97
+      ],
+      "Dante_Alighieri.txt": [
+        50,
+        92
+      ],
+      "Byzantine_Empire.txt": [
+        43,
+        93
+      ],
+      "Confucianism.txt": [
+        41,
+        89
+      ],
+      "Hamlet.txt": [
+        1,
+        88
+      ]
+    },
+    "activation_alone_isolated": "at an 8000-char window across a 10-file sample (Aristotle/Dante/Byzantine Empire/Christianity/Buddhism/Cold War/Confucianism/Drama/Hamlet/UK 2008 c.27), resolvePronouns alone moved edge count by 0/319 \u2014 the measured jump above is dominated by this recipe's own pre-existing POS-prior path plus the wiring itself running for the first time, not by activation's raw yield. Activation's disclosed value is the regime block (framesWithPronouns/framesCoPresent/framesAdjudicated) it produces, not additional edges \u2014 that block is not yet captured by any sidecar, named as follow-up.",
+    "found_while_fixing": "claims/blank-furniture-sentence-drift.claim.json \u2014 a real, separate bug in the-fold's blankLabelRows, surfaced only because this was the first time organs.blankFurniture was ever actually wired to makeRelationReader"
+  }
+}
