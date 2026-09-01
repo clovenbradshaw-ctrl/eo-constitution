@@ -356,6 +356,26 @@ which derives the accepted set from the consumer's own source and the
 passed/declared sets from the composition's own source, never from a
 maintained list either could drift from.
 
+**III.5 A gate that can run dark asserts its ground where the ground is
+committed.** Found live, in the repo that had just documented the class: a
+grammar gate carried an honest degraded-mode flag (`posPriorLoaded: false`),
+the flag was true-and-read-by-nobody for the gate's whole life, and the cause
+was one wrong word in a filename. III.3 makes a missing prior a typed gap;
+this article closes the remaining hole: **a typed gap that no test reads is a
+report, not an enforcement.** Every organ that degrades when external ground
+fails to load must have a conformance assertion, in the checkout where that
+ground is committed, that the gate is LIT — and that it does its one job,
+because "loaded" and "working" are different claims. Two named consequences:
+
+- **Prose may not claim wiring.** "X is wired" and "X has no caller" are
+  derived claims; both directions of that error were found in one session's
+  documentation. Where wiring matters, a test derives it from source (III.4's
+  own shape), and the document points at the test.
+- **A dark gate degrades loudly at composition time.** A consumer handed
+  `null` where an organ was promised cannot tell refusal from absence;
+  `typeof null` is "object" and passes truthy-shape checks. The composition
+  reports which of its gates are lit as data, and the assay reads it.
+
 ## Article IV — Amendment
 
 **IV.1 The constitution is amendable.** An amendment is a versioned change
@@ -531,6 +551,10 @@ the test.
   control constructed to fail; the null's own spread is reported beside the
   rank; the perturbation is scoped to the grain of the claim; direction is
   derived, never assumed.
+- **20th — The dark-gate rule (III.5).** A typed gap no test reads is a
+  report, not an enforcement. A gate that can run dark is asserted lit — and
+  working — where its ground is committed; prose never claims wiring, tests
+  derive it.
 
 *The 10th amendment — the validation discipline test (II.15) — remains a
 draft proposal (`AMENDMENT-10-PROPOSAL.md`) and is not entered here. IV.1
